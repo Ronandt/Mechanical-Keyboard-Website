@@ -1,16 +1,36 @@
-const Sequelize = require('sequelize');
-const db = require('./database_setup');
+const Sequelize = require("sequelize");
+const sequelize = require("./database_setup");
 
-const Products = db.define('products',{
-    productID: {type:Sequelize.INTEGER}, 
-    description: {type : Sequelize.STRING},
-    name: {type: Sequelize.STRING},
-    brand: {type: Sequelize.STRING}, //not done
-    category: {type: Sequelize.STRING},//get from dropdown, locked choices
-    //images
-    stock: {type: Sequelize.INTEGER},
-    price: {type: Sequelize.FLOAT(2)}
-    
-    });
+class Product extends Sequelize.Model {}
 
-module.exports = Products;
+Product.init(
+    {
+        name: {
+            type: Sequelize.DataTypes.STRING,
+        },
+        description: {
+            type: Sequelize.DataTypes.TEXT,
+        },
+        brand: {
+            type: Sequelize.DataTypes.STRING,
+        },
+        category: {
+            type: Sequelize.DataTypes.STRING,
+        },
+        stock: {
+            type: Sequelize.DataTypes.INTEGER,
+            allowNull: false,
+        },
+        price: {
+            type: Sequelize.DataTypes.INTEGER,
+        },
+    },
+    {
+        freezeTableName: true,
+        timestamps: true,
+        sequelize,
+        modelName: "Product",
+    }
+);
+
+module.exports = Product;
