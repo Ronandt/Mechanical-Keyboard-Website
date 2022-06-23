@@ -5,6 +5,7 @@ const superusers = require("../../data/superusers");
 const Permission = require("../models/Permissions");
 const Role = require("../models/Role");
 const Cart = require("../models/Cart");
+const Order = require("../models/Order");
 
 require("dotenv").config();
 
