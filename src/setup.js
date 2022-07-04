@@ -4,7 +4,6 @@ const flash = require("connect-flash");
 const path = require("path");
 const session = require("express-session");
 const handlebars = require("handlebars");
-const moment = require("moment");
 const { engine } = require("express-handlebars");
 const bodyParser = require("body-parser");
 const {
@@ -13,7 +12,6 @@ const {
 const passport = require("passport");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
-const showdown = require("showdown");
 
 //Local Imports
 const initaliseDatabase = require("./models/initalise_database");
@@ -83,37 +81,15 @@ app.set("view engine", "handlebars");
 
 app.set("views", path.join(__dirname, "../views"));
 
+// import helpers
+const helpers = require('./helpers');
+
 app.engine(
     "handlebars",
     engine({
         handlebars: allowInsecurePrototypeAccess(handlebars),
         defaultLayout: "page-layout",
-        helpers: {
-            equals(arg1, arg2, options) {
-                return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-            },
-
-            dateFormat(date, option) {
-                return moment(date).format(option);
-            },
-
-            mdToHtml(string) {
-                var converter = new showdown.Converter();
-                return converter.makeHtml(string);
-            },
-            truncate(string, maxlen) {
-                maxlen = parseInt(maxlen);
-                if (string.length > maxlen) {
-                    string = string.substr(0, maxlen) + "...";
-                }
-                return string;
-            },
-            multiply(a, b) {
-                if (typeof a === 'number' && typeof b === 'number') {
-                  return a * b
-                }},
-
-        },
+        helpers: helpers,
     })
 );
 
