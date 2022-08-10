@@ -18,3 +18,10 @@ jobs:
 
       - name: Format JavaScript files in src/
         run: npx prettier "src/**/*.js" --write
+
+      - name: Commit format
+        run: |
+          git config --global user.name 'Luth Andyka'
+          git config --global user.email 'lx0f@users.noreply.github.com'
+          git commit -am "[ACTIONS] Automated formatting"
+          git push
