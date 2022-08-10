@@ -20,5 +20,4 @@ jobs:
         run: |
           git config --global user.name 'Luth Andyka'
           git config --global user.email 'lx0f@users.noreply.github.com'
-          git commit -am "[ACTIONS] Automated formatting"
-          git push
+          git commit -am "[ACTIONS] Automated formatting" && git push || echo "No changes to be commited"
