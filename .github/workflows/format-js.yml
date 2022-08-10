@@ -14,7 +14,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        uses: npm i
+        run: npm i
 
       - name: Format JavaScript files in src/
-        uses: npx prettier "src/**/*.js" --write
+        run: npx prettier "src/**/*.js" --write
