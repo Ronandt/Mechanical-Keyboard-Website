@@ -1,5 +1,11 @@
 name: format-js
-on: [push]
+on:
+  push:
+    branches:
+      - KEYH-*
+  pull_request:
+    branches:
+      - main
 jobs:
   prettier-format-js:
     name: Format JavaScript files in src/
