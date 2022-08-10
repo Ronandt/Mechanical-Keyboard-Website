@@ -1,12 +1,20 @@
 name: format-js
 on: [push]
 jobs:
-  check-bats-version:
+  prettier-format-js:
+    name: Format JavaScript files in src/
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
-      - run: npm i
-      - run: npx prettier "src/**/*.js" --write
+          node-version: '18'
+
+      - name: Install dependencies
+        uses: npm i
+
+      - name: Format JavaScript files in src/
+        uses: npx prettier "src/**/*.js" --write
