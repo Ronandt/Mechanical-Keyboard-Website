@@ -10,11 +10,11 @@ const customerManageAccountRouter = require("./customer_manage_account");
 
 const ShoppingCart = require("./shoppingcart");
 const CustomerOrder = require("./order");
-const Policies = require("./policies")
+const Policies = require("./policies");
 
 const CustomerVoucher = require("./customer_voucher");
-const communityRouter = require("./community")
-const generateRouter = require("./generate")
+const communityRouter = require("./community");
+const generateRouter = require("./generate");
 
 /*customerRouter.use((req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -38,13 +38,13 @@ customerRouter.use("/createPE", customerpeRouter);
 customerRouter.use("/Cproducts", customerproductRouter);
 customerRouter.use("/account", customerManageAccountRouter);
 
-customerRouter.use("/generate", generateRouter)
-customerRouter.use("/policies",Policies)
+customerRouter.use("/generate", generateRouter);
+customerRouter.use("/policies", Policies);
 
 customerRouter.use("/cart", ShoppingCart);
 customerRouter.use("/order", CustomerOrder);
 
-customerRouter.use("/community", communityRouter)
+customerRouter.use("/community", communityRouter);
 customerRouter.use("/CustomerVoucher", CustomerVoucher);
 
 customerRouter.route("/logout").get((req, res) => {

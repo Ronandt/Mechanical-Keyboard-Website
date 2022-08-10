@@ -1,12 +1,7 @@
-
 const Sequelize = require("sequelize");
 const sequelize = require("./database_setup");
 
-
-
-class Mail extends Sequelize.Model {
- 
-}
+class Mail extends Sequelize.Model {}
 
 Mail.init(
   {
@@ -22,7 +17,7 @@ Mail.init(
       allowNull: true,
       unique: false,
     },
-     mail_subject: {
+    mail_subject: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
       unique: false,
@@ -42,10 +37,10 @@ Mail.init(
       allowNull: false,
       unique: false,
     },
-     date: {
+    date: {
       type: Sequelize.DataTypes.DATE,
       allowNull: true,
-       unique: false,
+      unique: false,
     },
     updatedAt: {
       type: Sequelize.DataTypes.DATE,
@@ -54,16 +49,14 @@ Mail.init(
     createdAt: {
       type: Sequelize.DataTypes.DATE,
       allowNull: false,
-    }
+    },
   },
   {
     freezeTableName: true,
     timestamps: true,
     sequelize,
-    modelName: "Mail"
+    modelName: "Mail",
   }
 );
-
-
 
 module.exports = Mail;

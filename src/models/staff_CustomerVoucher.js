@@ -16,7 +16,7 @@
 //         UserId: {
 //             type: Sequelize.DataTypes.INTEGER
 //         },
-       
+
 //     },
 //     {
 //         freezeTableName: true,
@@ -41,7 +41,7 @@
 //         VoucherId: {
 //             type: Sequelize.DataTypes.INTEGER
 //         },
-       
+
 //     },
 //     {
 //         freezeTableName: true,
@@ -51,8 +51,7 @@
 //     }
 // );
 
-
-// // User and order association 
+// // User and order association
 // StaffCustomerVoucher.belongsTo(User);
 // User.hasOne(StaffCustomerVoucher);
 

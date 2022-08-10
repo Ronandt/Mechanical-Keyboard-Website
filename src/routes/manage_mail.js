@@ -59,7 +59,7 @@
 //             } catch (e) {
 //               req.flash("error", e)
 //             }
-     
+
 //           }
 //         })
 //       }
@@ -67,14 +67,8 @@
 //             console.log("Manual");
 //           }
 //       }
-    
-
 
 // });
-
-   
-
-
 
 // manageMail
 //     .route("/")
@@ -82,7 +76,6 @@
 //         const mail = await (await Mail.findAll()).map((x) => x.dataValues);
 //         return res.render("./staff/mails/mail-table", { mail });
 //     });
-
 
 // manageMail.route("/mail-form").get((req, res) => {
 //   res.render("staff/mails/mail-form");
@@ -116,7 +109,7 @@
 //    for (i = 0; i < user.length; i++) {
 //       const email = user[i].email
 //      const link = `http://localhost:3000/reset-password/${user[i].id}`
-     
+
 //       try {
 //         // const sender = {
 //         //   email: 'tayzheyin123@gmail.com',
@@ -134,7 +127,7 @@
 //             template: `./staff/email/${mail.template_id}`,
 //             context: { link },
 //          });
-        
+
 //         // apiInstance
 //         //   .sendTransacEmail({
 //         //     sender: sender,
@@ -147,10 +140,10 @@
 //       } catch (e) {
 //         req.flash("error", e)
 //       }
-//   }; 
+//   };
 //     req.flash("success", "Mail send successfully")
 //     return res.redirect("/staff/manage-mail")
- 
+
 // });
 
 // manageMail.get('/editMail/:id', (req, res) => {
@@ -181,8 +174,5 @@
 //   res.redirect("/staff/manage-mail");
 
 // });
-
-
-
 
 // module.exports = manageMail;

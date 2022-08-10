@@ -10,31 +10,35 @@ async function InitaliseGoogleLogin() {
           "70066158066-ea8u4ot65lj1m73i13brakk4sbc4oh6t.apps.googleusercontent.com",
         clientSecret: "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",
         callbackURL: "http://localhost:3000/login-google/callback",
-        
       },
       async (accessToken, refreshToken, profile, done) => {
-      
-       const [user, created] = await User.findOrCreate({
+        const [user, created] = await User.findOrCreate({
           where: { email: profile.emails[0].value },
           defaults: {
             username: profile.displayName,
             password: null,
             isStaff: 0,
             email: profile.emails[0].value,
-            authMethod: "oauth"
+            authMethod: "oauth",
           },
         });
 
-        if(user.authMethod !== "oauth") {
-          return done(null, false, {message: "An account that is not yours has an account. Please contact an administrator to resolve this dispute."})
-        } else if (created){
-          return done(null, user, {message: "You created your account! Welcome"})
-        }
-        else {
-          if(user.disabled) {
-            return done(null, false, {message: "Your account has been disabled!"})
+        if (user.authMethod !== "oauth") {
+          return done(null, false, {
+            message:
+              "An account that is not yours has an account. Please contact an administrator to resolve this dispute.",
+          });
+        } else if (created) {
+          return done(null, user, {
+            message: "You created your account! Welcome",
+          });
+        } else {
+          if (user.disabled) {
+            return done(null, false, {
+              message: "Your account has been disabled!",
+            });
           }
-          return done(null, user, {message: "Welcome!"})
+          return done(null, user, { message: "Welcome!" });
         }
       }
     )
@@ -48,5 +52,5 @@ async function InitaliseGoogleLogin() {
     return done(null, user);
   });
 }
-  
-module.exports = InitaliseGoogleLogin
+
+module.exports = InitaliseGoogleLogin;

@@ -6,23 +6,23 @@ const Ticket = require("./Ticket");
 class TicketAssignee extends Sequelize.Model {}
 
 TicketAssignee.init(
-    {
-        id: {
-            type: Sequelize.DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            unique: true,
-            allowNull: false,
-        },
+  {
+    id: {
+      type: Sequelize.DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      unique: true,
+      allowNull: false,
     },
-    {
-        freezeTableName: true,
-        timestamps: true,
-        createdAt: true,
-        updatedAt: true,
-        sequelize,
-        modelName: "TicketAssignee",
-    }
+  },
+  {
+    freezeTableName: true,
+    timestamps: true,
+    createdAt: true,
+    updatedAt: true,
+    sequelize,
+    modelName: "TicketAssignee",
+  }
 );
 
 TicketAssignee.belongsTo(User, { foreignKey: "userID" });

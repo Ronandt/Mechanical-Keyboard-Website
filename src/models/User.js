@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const Sequelize = require("sequelize");
 const sequelize = require("./database_setup");
 const moment = require("moment");
-const {v4: uuid} = require("uuid");
+const { v4: uuid } = require("uuid");
 const { set } = require("../setup");
 
 class User extends Sequelize.Model {
@@ -11,13 +11,13 @@ class User extends Sequelize.Model {
   }
 
   verifyTokenAge() {
-    return moment().unix() - this.getDataValue("resetTokenDate") < 300
+    return moment().unix() - this.getDataValue("resetTokenDate") < 300;
   }
 
   generateResetToken() {
     this.setDataValue("resetTokenID", uuid());
     this.setDataValue("resetTokenDate", moment().unix());
-    this.save()
+    this.save();
   }
 }
 
@@ -27,7 +27,7 @@ User.init(
       type: Sequelize.DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      unique: 'id',
+      unique: "id",
       allowNull: false,
     },
     username: {
@@ -37,18 +37,17 @@ User.init(
     email: {
       type: Sequelize.DataTypes.STRING,
       allowNull: false,
-      unique: 'email',
+      unique: "email",
     },
     image: {
       type: Sequelize.DataTypes.BLOB,
       allowNull: true,
       defaultValue: null,
-
     },
     password: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
-      unique: 'password',
+      unique: "password",
       set(value) {
         if (value) {
           this.setDataValue("password", bcrypt.hashSync(value, 10) + "");
@@ -59,7 +58,6 @@ User.init(
       type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       defaultValue: null,
-
     },
     authMethod: {
       type: Sequelize.DataTypes.STRING,
@@ -76,12 +74,12 @@ User.init(
     resetTokenDate: {
       type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
-      defaultValue:0,
+      defaultValue: 0,
     },
     disabled: {
       type: Sequelize.DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
     },
     updatedAt: {
       type: Sequelize.DataTypes.DATE,
@@ -90,12 +88,11 @@ User.init(
     createdAt: {
       type: Sequelize.DataTypes.DATE,
       allowNull: false,
-      
-    }, date: {
+    },
+    date: {
       type: Sequelize.DataTypes.STRING,
       defaultValue: moment().format("L"),
-    
-    }, 
+    },
     imageFilePath: {
       type: Sequelize.DataTypes.STRING,
       defaultValue: "uploads/unknownimage.png",
@@ -104,10 +101,8 @@ User.init(
     address: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
-      defaultValue: null
-
-    }
-
+      defaultValue: null,
+    },
   },
   {
     freezeTableName: true,
@@ -116,6 +111,5 @@ User.init(
     modelName: "User",
   }
 );
-
 
 module.exports = User;

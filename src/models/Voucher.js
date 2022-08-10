@@ -1,13 +1,10 @@
-
 const Sequelize = require("sequelize");
 const sequelize = require("./database_setup");
-
-
 
 class Voucher extends Sequelize.Model {
   // compareStatus(value) {
   //   if(value)
-  //   return 
+  //   return
   // }
 }
 
@@ -73,22 +70,22 @@ Voucher.init(
       allowNull: true,
       unique: false,
     },
-    voucher_used:{
+    voucher_used: {
       type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       unique: false,
     },
-    voucher_cat:{
+    voucher_cat: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
       unique: false,
     },
-    usage:{
+    usage: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
       unique: false,
     },
-    spend:{
+    spend: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true,
       unique: false,
@@ -100,16 +97,14 @@ Voucher.init(
     createdAt: {
       type: Sequelize.DataTypes.DATE,
       allowNull: false,
-    }
+    },
   },
   {
     freezeTableName: true,
     timestamps: true,
     sequelize,
-    modelName: "Voucher"
+    modelName: "Voucher",
   }
 );
-
-
 
 module.exports = Voucher;
