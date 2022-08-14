@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database_setup');
 const Product = require('./product');
 const User = require('./User');
-const DeliveryDetail = require("./DeliveryDetail")
+const DeliveryDetail = require('./DeliveryDetail');
 
 class Order extends Sequelize.Model {}
 
@@ -18,16 +18,16 @@ Order.init(
             type: Sequelize.DataTypes.INTEGER,
         },
         subtotal: {
-            type: Sequelize.DataTypes.INTEGER
+            type: Sequelize.DataTypes.INTEGER,
         },
         amount: {
             type: Sequelize.DataTypes.INTEGER,
         },
         discount: {
-            type: Sequelize.DataTypes.INTEGER
+            type: Sequelize.DataTypes.INTEGER,
         },
         shipping_fee: {
-            type: Sequelize.DataTypes.INTEGER
+            type: Sequelize.DataTypes.INTEGER,
         },
         shipping_status: {
             type: Sequelize.DataTypes.STRING,
@@ -93,8 +93,8 @@ Payment.init(
         Payment_method: {
             type: Sequelize.DataTypes.STRING,
         },
-        last4digit:{
-            type: Sequelize.DataTypes.INTEGER
+        last4digit: {
+            type: Sequelize.DataTypes.INTEGER,
         },
         isSuccess: {
             type: Sequelize.DataTypes.BOOLEAN,
@@ -111,39 +111,38 @@ Payment.init(
     }
 );
 
-
 class Cancelrequest extends Sequelize.Model {}
 
 Cancelrequest.init(
     {
-        id:{
+        id: {
             type: Sequelize.DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             unique: true,
         },
-        OrderId:{
+        OrderId: {
             type: Sequelize.DataTypes.INTEGER,
         },
-        message:{
-            type: Sequelize.DataTypes.STRING
+        message: {
+            type: Sequelize.DataTypes.STRING,
         },
         status: {
-            type: Sequelize.DataTypes.STRING
-        }
+            type: Sequelize.DataTypes.STRING,
+        },
     },
     {
         freezeTableName: true,
         timestamps: true,
         sequelize,
-        modelName: "Cancelrequest",
+        modelName: 'Cancelrequest',
     }
 );
 // cancel request and order
-Order.hasOne(Cancelrequest)
-Cancelrequest.belongsTo(Order)
+Order.hasOne(Cancelrequest);
+Cancelrequest.belongsTo(Order);
 
-
+// User and order association
 class Shippinginfo extends Sequelize.Model {}
 
 Shippinginfo.init(
@@ -155,36 +154,36 @@ Shippinginfo.init(
             unique: true,
         },
         OrderId: {
-            type: Sequelize.DataTypes.INTEGER
+            type: Sequelize.DataTypes.INTEGER,
         },
         Fname: {
             type: Sequelize.DataTypes.STRING,
         },
         Lname: {
-            type: Sequelize.DataTypes.STRING
+            type: Sequelize.DataTypes.STRING,
         },
         address: {
-            type: Sequelize.DataTypes.STRING
+            type: Sequelize.DataTypes.STRING,
         },
         zipcode: {
-            type: Sequelize.INTEGER
-        }
+            type: Sequelize.INTEGER,
+        },
     },
     {
         freezeTableName: true,
         timestamps: true,
         sequelize,
-        modelName: "Shippinginfo",
+        modelName: 'Shippinginfo',
     }
 );
 
-// User and order association 
+// User and order association
 Order.belongsTo(User);
 User.hasMany(Order);
 
 //shippinginfo and order
-Shippinginfo.belongsTo(Order)
-Order.hasOne(Shippinginfo)
+Shippinginfo.belongsTo(Order);
+Order.hasOne(Shippinginfo);
 
 // Order and Product association
 Order.belongsToMany(Product, {
@@ -210,10 +209,14 @@ Product.hasMany(OrderItem);
 OrderItem.belongsTo(Product);
 
 // Order and Payment association
-Order.hasMany(Payment);
+Order.hasOne(Payment);
 Payment.belongsTo(Order);
 
+Order.hasOne(DeliveryDetail);
+DeliveryDetail.belongsTo(Order);
 
-module.exports = { Order, OrderItem, Payment, Shippinginfo, Cancelrequest};
+// cancel request and order
+Order.hasOne(Cancelrequest);
+Cancelrequest.belongsTo(Order);
 
-
+module.exports = { Order, OrderItem, Payment, Shippinginfo, Cancelrequest };

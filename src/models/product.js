@@ -39,6 +39,10 @@ Product.init(
             allowNull: true,
             defaultValue: null,
         },
+        status: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: 'online',
+        },
     },
     {
         freezeTableName: true,

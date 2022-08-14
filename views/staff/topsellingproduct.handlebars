@@ -1,0 +1,362 @@
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Top Sellings Prodduct</h1>
+<p class="mb-4">View Hot Product</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Top 10 Of Each Category</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="wrapper">
+              <input type="radio" name="slider" checked id="home">
+              <input type="radio" name="slider" id="blog">
+              <input type="radio" name="slider" id="code">
+              <input type="radio" name="slider" id="help">
+              <input type="radio" name="slider" id="add1">
+              <nav>
+                <label for="home" class="home">Pre-built Keyboard</label>
+                <label for="blog" class="blog">Bare Bone Kit</label>
+                <label for="code" class="code">Key Cap</label>
+                <label for="help" class="help">Switches</label>
+                <label for="add1" class="add1">Accessories</label>
+                <div class="slider"></div>
+              </nav>
+              <!-- Section of Prebuilt keyboard-->
+              <section>
+                  <div class="content content-1">
+                    <div class="card">
+                        <div class="card-body">
+                            {{#each top10sp}}
+                            <article class="card card-product-list">
+                                    <div class="row g-0">
+                                        <aside class="col-xl-3 col-md-4">
+                                            <a href="#" class="img-wrap"> <img src="/{{this.Product.image}}" style="height: 250px; width:250px"> </a>
+                                        </aside> <!-- col.// -->
+                                        <div class="col-xl-9 col-md-8 border-start">
+                                            <div class="card-body">
+                                                <a href="#" class="title mb-2"> {{this.Product.name}} Sold: {{this.dataValues.sold}}</a>
+                                                
+                                                <div class="price-wrap me-3">
+                                                    <span class="price h5"> ${{this.Product.price}}.00 </span>
+                                                </div> <!-- price-dewrap // -->
+                                                
+                                                {{!-- <div class="rating-wrap mb-2">
+                                                    <ul class="rating-stars">
+                                                        <li class="stars-active" style="width: 90%;">
+                                                            <img src="../images/misc/stars-active.svg" alt="">
+                                                        </li>
+                                                        <li><img src="../images/misc/starts-disable.svg" alt=""> </li>
+                                                    </ul>
+                                                    <span class="label-rating text-warning">4.5</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-muted">154 orders</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-success">Free Shipping</span>
+                                                </div> <!-- rating-wrap.// --> --}}
+                                                
+                                                <p class="text-muted">{{this.Product.description}}</p>
+                                            </div> <!-- card-body .// -->
+                                        </div> <!-- col.// -->
+                                    </div> <!-- row.// -->
+                            </article>
+                            {{/each}}
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                  </div>
+              </section>
+              
+              <!-- Section of Bare Bone Kit-->
+              <section>
+                  <div class="content content-2">
+                    <div class="card">
+                        <div class="card-body">
+                            {{#each top10sb}}
+                            <article class="card card-product-list">
+                                    <div class="row g-0">
+                                        <aside class="col-xl-3 col-md-4">
+                                            <a href="#" class="img-wrap"> <img src="/{{this.Product.image}}" style="height: 250px; width:250px"> </a>
+                                        </aside> <!-- col.// -->
+                                        <div class="col-xl-9 col-md-8 border-start">
+                                            <div class="card-body">
+                                                <a href="#" class="title mb-2"> {{this.Product.name}} Sold: {{this.dataValues.sold}}</a>
+                                                
+                                                <div class="price-wrap me-3">
+                                                    <span class="price h5"> ${{this.Product.price}}.00 </span>
+                                                </div> <!-- price-dewrap // -->
+                                                
+                                                {{!-- <div class="rating-wrap mb-2">
+                                                    <ul class="rating-stars">
+                                                        <li class="stars-active" style="width: 90%;">
+                                                            <img src="../images/misc/stars-active.svg" alt="">
+                                                        </li>
+                                                        <li><img src="../images/misc/starts-disable.svg" alt=""> </li>
+                                                    </ul>
+                                                    <span class="label-rating text-warning">4.5</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-muted">154 orders</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-success">Free Shipping</span>
+                                                </div> <!-- rating-wrap.// --> --}}
+                                                
+                                                <p class="text-muted">{{this.Product.description}}</p>
+                                            </div> <!-- card-body .// -->
+                                        </div> <!-- col.// -->
+                                    </div> <!-- row.// -->
+                            </article>
+                            {{/each}}
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                  </div>
+              </section>
+
+              <!-- Section of Key Cap-->
+              <section>
+                  <div class="content content-3">
+                    <div class="card">
+                        <div class="card-body">
+                            {{#each top10sk}}
+                            <article class="card card-product-list">
+                                    <div class="row g-0">
+                                        <aside class="col-xl-3 col-md-4">
+                                            <a href="#" class="img-wrap"> <img src="/{{this.Product.image}}" style="height: 250px; width:250px"> </a>
+                                        </aside> <!-- col.// -->
+                                        <div class="col-xl-9 col-md-8 border-start">
+                                            <div class="card-body">
+                                                <a href="#" class="title mb-2"> {{this.Product.name}} Sold: {{this.dataValues.sold}}</a>
+                                                
+                                                <div class="price-wrap me-3">
+                                                    <span class="price h5"> ${{this.Product.price}}.00 </span>
+                                                </div> <!-- price-dewrap // -->
+                                                
+                                                {{!-- <div class="rating-wrap mb-2">
+                                                    <ul class="rating-stars">
+                                                        <li class="stars-active" style="width: 90%;">
+                                                            <img src="../images/misc/stars-active.svg" alt="">
+                                                        </li>
+                                                        <li><img src="../images/misc/starts-disable.svg" alt=""> </li>
+                                                    </ul>
+                                                    <span class="label-rating text-warning">4.5</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-muted">154 orders</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-success">Free Shipping</span>
+                                                </div> <!-- rating-wrap.// --> --}}
+                                                
+                                                <p class="text-muted">{{this.Product.description}}</p>
+                                            </div> <!-- card-body .// -->
+                                        </div> <!-- col.// -->
+                                    </div> <!-- row.// -->
+                            </article>
+                            {{/each}}
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                  </div>
+              </section>
+            <!-- Section of Switches-->
+              <section>
+                  <div class="content content-4">
+                    <div class="card">
+                        <div class="card-body">
+                            {{#each top10ss}}
+                            <article class="card card-product-list">
+                                    <div class="row g-0">
+                                        <aside class="col-xl-3 col-md-4">
+                                            <a href="#" class="img-wrap"> <img src="/{{this.Product.image}}" style="height: 250px; width:250px"> </a>
+                                        </aside> <!-- col.// -->
+                                        <div class="col-xl-9 col-md-8 border-start">
+                                            <div class="card-body">
+                                                <a href="#" class="title mb-2"> {{this.Product.name}} Sold: {{this.dataValues.sold}}</a>
+                                                
+                                                <div class="price-wrap me-3">
+                                                    <span class="price h5"> ${{this.Product.price}}.00 </span>
+                                                </div> <!-- price-dewrap // -->
+                                                
+                                                {{!-- <div class="rating-wrap mb-2">
+                                                    <ul class="rating-stars">
+                                                        <li class="stars-active" style="width: 90%;">
+                                                            <img src="../images/misc/stars-active.svg" alt="">
+                                                        </li>
+                                                        <li><img src="../images/misc/starts-disable.svg" alt=""> </li>
+                                                    </ul>
+                                                    <span class="label-rating text-warning">4.5</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-muted">154 orders</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-success">Free Shipping</span>
+                                                </div> <!-- rating-wrap.// --> --}}
+                                                
+                                                <p class="text-muted">{{this.Product.description}}</p>
+                                            </div> <!-- card-body .// -->
+                                        </div> <!-- col.// -->
+                                    </div> <!-- row.// -->
+                            </article>
+                            {{/each}}
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                  </div>
+              </section>
+              <!-- Section of Accessory-->
+              <section>
+                  <div class="content content-5">
+                    <div class="card">
+                        <div class="card-body">
+                            {{#each top10sa}}
+                            <article class="card card-product-list">
+                                    <div class="row g-0">
+                                        <aside class="col-xl-3 col-md-4">
+                                            <a href="#" class="img-wrap"> <img src="/{{this.Product.image}}" style="height: 250px; width:250px"> </a>
+                                        </aside> <!-- col.// -->
+                                        <div class="col-xl-9 col-md-8 border-start">
+                                            <div class="card-body">
+                                                <a href="#" class="title mb-2"> {{this.Product.name}} Sold: {{this.dataValues.sold}}</a>
+                                                
+                                                <div class="price-wrap me-3">
+                                                    <span class="price h5"> ${{this.Product.price}}.00 </span>
+                                                </div> <!-- price-dewrap // -->
+                                                
+                                                {{!-- <div class="rating-wrap mb-2">
+                                                    <ul class="rating-stars">
+                                                        <li class="stars-active" style="width: 90%;">
+                                                            <img src="../images/misc/stars-active.svg" alt="">
+                                                        </li>
+                                                        <li><img src="../images/misc/starts-disable.svg" alt=""> </li>
+                                                    </ul>
+                                                    <span class="label-rating text-warning">4.5</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-muted">154 orders</span>
+                                                    <i class="dot"></i>
+                                                    <span class="label-rating text-success">Free Shipping</span>
+                                                </div> <!-- rating-wrap.// --> --}}
+                                                
+                                                <p class="text-muted">{{this.Product.description}}</p>
+                                            </div> <!-- card-body .// -->
+                                        </div> <!-- col.// -->
+                                    </div> <!-- row.// -->
+                            </article>
+                            {{/each}}
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                  </div>
+              </section>
+          </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+<style>
+    ::selection{
+      background: rgba(23, 98, 184, 0.3);
+    }
+    .wrapper{
+  
+      width: 100%;
+      height: 100%;
+      padding: 25px 30px 30px 30px;
+      border-radius: 5px;
+      background: #fff;
+    
+    }
+    .wrapper header{
+      font-size: 30px;
+      font-weight: 600;
+      padding-bottom: 20px;
+    }
+    .wrapper nav{
+      position: relative;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .wrapper nav label{
+      display: block;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      color: #0f87d8;
+      font-size: 17px;
+      border-radius: 5px;
+      margin: 0 5px;
+  
+      transition: all 0.3s ease;
+    }
+    .wrapper nav label:hover{
+      margin-bottom: 10px;
+      background:#1253a7;
+    }
+    #home:checked ~ nav label.home,
+    #blog:checked ~ nav label.blog,
+    #code:checked ~ nav label.code,
+    #help:checked ~ nav label.help,
+    #about:checked ~ nav label.about{
+      color: #fff;
+    }
+    nav label i{
+      padding-right: 7px;
+    }
+    nav .slider{
+      position: absolute;
+      height: 100%;
+      width: 20%;
+      left: 0;
+      bottom: 0;
+      z-index: 0;
+      border-radius: 5px;
+      background: #1253a7;
+      transition: all 0.3s ease;
+    
+    }
+    input[type="radio"]{
+      display: none;
+    }
+    #blog:checked ~ nav .slider{
+      left: 20%;
+    }
+    #code:checked ~ nav .slider{
+      left: 40%;
+    }
+    #help:checked ~ nav .slider{
+      left: 60%;
+    }
+    #about:checked ~ nav .slider{
+      left: 80%;
+    }
+    #add1:checked ~ nav .slider{
+      left: 80%;
+    }
+    section .content{
+      display: none;
+      background: #fff;
+    }
+    #home:checked ~ section .content-1,
+    #blog:checked ~ section .content-2,
+    #code:checked ~ section .content-3,
+    #help:checked ~ section .content-4,
+    #add1:checked ~ section .content-5{
+      display: block;
+    }
+    section .content .title{
+      font-size: 21px;
+      font-weight: 500;
+      margin: 30px 0 10px 0;
+    }
+    section .content p{
+    text-align: justify;
+    }
+  </style>

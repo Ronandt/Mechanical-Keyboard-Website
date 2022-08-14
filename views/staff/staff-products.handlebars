@@ -25,7 +25,7 @@
                 <label for="blog" class="blog"><i class="fa fa-keyboard"></i>Barebones Kits</label>
                 <label for="code" class="code"><i class="fa fa-stop"></i>Keycaps</label>
                 <label for="help" class="help"><img src="../../../public/images/icons/keycap.png" alt="">Switches</label>
-                <label for="add1" class="add1"><i class="fas fa-accessory"></i>Others</label>
+                <label for="add1" class="add1"><i class="fas fa-accessory"></i>Accessories</label>
                 <div class="slider"></div>
               </nav>
               <!-- Section of Prebuilt keyboard-->
@@ -155,7 +155,7 @@
                       </thead>
                       <tbody>
                       {{#each products}}
-                        {{#equals this.category "Barebones Kit"}}
+                        {{#equals this.category "Barebone Kit"}}
                           <tr>
                             <td>{{this.id}}</td>
                             <td>{{this.name}}</td>
@@ -265,7 +265,7 @@
                       </thead>
                       <tbody>
                        {{#each products}}
-                        {{#equals this.category "Keycap"}}
+                        {{#equals this.category "Key Cap"}}
                           <tr>
                           <td>{{this.id}}</td>
                             <td>{{this.name}}</td>

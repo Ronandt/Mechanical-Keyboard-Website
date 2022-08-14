@@ -7,49 +7,47 @@ class Pevaluation extends Sequelize.Model {}
 
 Pevaluation.init(
     {
-      id: {
-        type: Sequelize.DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        unique: 'id',
-        allowNull: false,
-      },
-      UserId:{
-        type: Sequelize.DataTypes.INTEGER,
-
-      },
-      ProductId:{
-        type: Sequelize.DataTypes.INTEGER,
-      },
-      ProductRating: {
-        type:Sequelize.INTEGER,
-        allowNull:false,
-      },
-      ProductRemarks: {
-        type:Sequelize.STRING,
-        allowNull:false,
-      },
-      updatedAt: {
-        type: Sequelize.DataTypes.DATE,
-        allowNull: false,
-      },
-      createdAt: {
-        type: Sequelize.DataTypes.DATE,
-        allowNull: false,
-      },
-      imageFilePath1: {
-        type: Sequelize.DataTypes.STRING,
-        defaultValue: "uploads/unknownimage.png",
-      },
-      imageFilePath2: {
-        type: Sequelize.DataTypes.STRING,
-        defaultValue: "uploads/unknownimage.png",
-      },
-      imageFilePath3: {
-        type: Sequelize.DataTypes.STRING,
-        defaultValue: "uploads/unknownimage.png",
-      },
-      
+        id: {
+            type: Sequelize.DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            unique: true,
+            allowNull: false,
+        },
+        UserId: {
+            type: Sequelize.DataTypes.INTEGER,
+        },
+        ProductId: {
+            type: Sequelize.DataTypes.INTEGER,
+        },
+        ProductRating: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        ProductRemarks: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        updatedAt: {
+            type: Sequelize.DataTypes.DATE,
+            allowNull: false,
+        },
+        createdAt: {
+            type: Sequelize.DataTypes.DATE,
+            allowNull: false,
+        },
+        imageFilePath1: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: 'uploads/unknownimage.png',
+        },
+        imageFilePath2: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: 'uploads/unknownimage.png',
+        },
+        imageFilePath3: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: 'uploads/unknownimage.png',
+        },
     },
     {
         freezeTableName: true,
@@ -57,12 +55,12 @@ Pevaluation.init(
         sequelize,
         modelName: 'Product_Evaluation',
     }
-  );
-  
-  Pevaluation.belongsTo(Product);
-  Product.hasMany(Pevaluation)
+);
 
-  Pevaluation.belongsTo(User)
-  User.hasMany(Pevaluation)
+Pevaluation.belongsTo(Product);
+Product.hasMany(Pevaluation);
 
-  module.exports = Pevaluation;
+Pevaluation.belongsTo(User);
+User.hasMany(Pevaluation);
+
+module.exports = Pevaluation;

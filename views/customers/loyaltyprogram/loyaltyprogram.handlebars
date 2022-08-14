@@ -1,528 +1,544 @@
 <section class="section-content padding-y">
-    <div class="container">     
+    <div class="container">
         <div class="row">
             <aside class="col-md-3">
                 <ul class="list-group">
-                    <a class="list-group-item " href="#"> Account overview  </a>
-                    <a class="list-group-item" href="#"> My Orders </a>
-                    <a class="list-group-item" href="#"> My wishlist </a>
-                    <a class="list-group-item" href="#"> Return and refunds </a>
-                    <a class="list-group-item" href="#">Settings </a>
-                    <a class="list-group-item" href="#"> My Selling Items </a>
-                    <a class="list-group-item" href="#"> Received orders </a>
-                    <a class="list-group-item " href="#"> My vouchers</a>
-                    <a class="list-group-item active" href="#"> Loyalty Program</a>
+                   <a class="list-group-item " href="/account"> Account overview  </a>
+			<a class="list-group-item " href="/account/orderhistory"> My Orders </a>
+			<a class="list-group-item" href="/account/review"> My Comments </a>
+			<a class="list-group-item" href="#"> Return and refunds </a>
+            <a class="list-group-item " href="/account/myvouchers"> Vouchers</a>
+			<a class="list-group-item active " href="/account/loyaltyprogram"> Rewards Program</a>
                 </ul>
             </aside> <!-- col.// -->
             {{#if User_Card}}
-              {{#each User_Card}}
-                {{#equals this.Activation "On"}}
-                
-                <div class="col-md-9">
-                  <div class="card loyalty-card card-face">
-                    <div class="card-header header" >
-                      <span style="color:white ;" >Welcome Back, </span> 
-                      <h4 style="color: white;">TAY ZHE YIN
-                        <i class="fa-regular fa-bell" style="float:right;padding-left:15px;"></i> 
-                        <i type="button" class="fa-solid fa-clock-rotate-left " style="float:right ;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <br>
-                          <div class="dropdown-menu" style="position:relative;width:200px;">
-                          
-                          {{#each ../voucherlist}}
-                              {{#if this.voucheritem}}
-                                {{#equals ../this.UserID ../user.id}}
-                                  {{#each ../this.voucheritem}}
-                                    {{#each ../../../voucheritem}}
-                                      {{#equals ../this.VoucherListId ../../../this.id }}
-                                        {{#equals ../this.VoucherId ../../this.id}}
-                                            {{#equals this.Type "Reward"}}
-                                              <span>{{../this.voucher_title}}</span>
-                                              <span class="float-right">27/02/2022</span>
-                                          {{/equals}}
-                                        {{/equals}}
-                                      {{/equals}}
-                                    {{/each}}
-                                  {{/each}}
-                                {{/equals}}
-                              {{/if}}
-                            {{/each}}
-                        
-                          </div>
-                        </i>
-                      </h4>
-                    
-                      <div class="card point-card">
-                        <div class="text">
-                          <span> <i class="fa-solid fa-user-large"></i> &nbsp 019HFIN9S8B</span>
-                          <span class="points-text">
-                            <i class="fa-solid fa-coins"></i> &nbsp 
-                            {{#each ../User_Card}}
+            {{#each User_Card}}
+            {{#equals this.Activation "On"}}
 
-                              {{this.Active_Points}}
-                        
-                            {{/each}}
-                          </span>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="redeem-earn">
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="container-1">
-                              <div class="card earn">           
-                              <div class="contentBx">
-                                <h2>Earn <i class="fa-solid fa-coins"></i></h2>
+            <div class="col-md-9">
+                <div class="card loyalty-card card-face">
+                    <div class="card-header header">
+                        <span style="color:white ;">Welcome Back, </span>
+                        <h4 style="color: white;">TAY ZHE YIN
+                            <i class="fa-regular fa-bell" style="float:right;padding-left:15px;"></i>
+                            <i type="button" class="fa-solid fa-clock-rotate-left " style="float:right ;"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <br>
-                                <div class="size">
-                                  {{!-- <form action="#" method="POST"> --}}
-                                    <input type="text" name="earn" id="" value="100" hidden>
-                                    <button class="btn btn-primary redeem"> Earn </button>
-                                  {{!-- </form> --}}
+                                <div class="dropdown-menu" style="position:relative;width:200px;">
+
+                                    {{#each ../voucherlist}}
+                                    {{#if this.voucheritem}}
+                                    {{#equals ../this.UserID ../user.id}}
+                                    {{#each ../this.voucheritem}}
+                                    {{#each ../../../voucheritem}}
+                                    {{#equals ../this.VoucherListId ../../../this.id }}
+                                    {{#equals ../this.VoucherId ../../this.id}}
+                                    {{#equals this.Type "Reward"}}
+                                    <span>{{../this.voucher_title}}</span>
+                                    <span class="float-right">27/02/2022</span>
+                                    {{/equals}}
+                                    {{/equals}}
+                                    {{/equals}}
+                                    {{/each}}
+                                    {{/each}}
+                                    {{/equals}}
+                                    {{/if}}
+                                    {{/each}}
+
                                 </div>
-                              </div>
+                            </i>
+                        </h4>
+
+                        <div class="card point-card">
+                            <div class="text">
+                                <span> <i class="fa-solid fa-user-large"></i> 0AIFP0281[{{this.id}}]</span>
+                                <span class="points-text">
+                                    <i class="fa-solid fa-coins"></i> &nbsp
+                                    {{#each ../User_Card}}
+
+                                    {{this.Active_Points}}
+
+                                    {{/each}}
+                                </span>
                             </div>
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="container-1">
-                              <div class="card redeem">           
-                                  <div class="contentBx">
-                                    <h2>Redeem <i class="fa-solid fa-gift"></i></h2>
-                                    <br>
-                                    <div class="size">
-                                      <form action="/loyaltyprogram/redeem" method="GET">
-                                        
-                                        <button type="submit" class="btn btn-primary redeem"> Redeem </button>
-                                      </form>
+                        </div>
+                        <br>
+                        <div class="redeem-earn">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="container-1">
+                                        <div class="card earn">
+                                            <div class="contentBx">
+                                                <h2>Earn <i class="fa-solid fa-coins"></i></h2>
+                                                <br>
+                                                <div class="size">
+                                                    {{!-- <form action="#" method="POST"> --}}
+                                                        <input type="text" name="earn" id="" value="100" hidden>
+                                                        <button class="btn btn-primary redeem"> Earn </button>
+                                                        {{!--
+                                                    </form> --}}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <div class="card-body body">
-                      <div class="card level-card">
-                        <br>
-                        <div class="row" >
-                          <div class="col-2">
-                            {{#each ../User_Card}}
-                            {{#equals this.Status "Gold"}}
-                              <h1>
-                                <i class="fa-solid fa-crown" style="color:gold;text-shadow: 1px 1px 2px grey;"></i>
-                              </h1>
-                            {{/equals}}
-                            {{#equals this.Status "Silver"}}
-                              <h1>
-                                <i class="fa-solid fa-crown" style="color:Silver;text-shadow: 1px 1px 2px grey;"></i>
-                              </h1>
-                            {{/equals}}
-                            {{#equals this.Status "Bronze"}}
-                              <h1>
-                                <i class="fa-solid fa-crown" style="color:#DC7633;text-shadow: 1px 1px 2px grey;"></i>
-                              </h1>
-                            {{/equals}}
-                            
-                            {{/each}}
-                          
-                          </div>
-                          <div class="col-8" >
-                            <div class="tier">
-                              <span class="rank">
-                                {{#each User_Card}}
+                                </div>
+                                <div class="col-6">
+                                    <div class="container-1">
+                                        <div class="card redeem">
+                                            <div class="contentBx">
+                                                <h2>Redeem <i class="fa-solid fa-gift"></i></h2>
+                                                <br>
+                                                <div class="size">
+                                                    <form action="/loyaltyprogram/redeem" method="GET">
 
-                                  {{../this.Status}}
-                        
-                                {{/each}}
-                              </span> 
+                                                        <button type="submit" class="btn btn-primary redeem"> Redeem
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="progression" >
-                              {{#each ../User_Card}}
-                                {{#equals this.Status "Gold"}}
-                                
-                                    <span >Next Level : Coming Soon</span>
-                                  
-                                {{/equals}}
-                                {{#equals this.Status "Silver"}}
-                                  
-                                    <span >Next Level : Gold</span>
-                                
-                                {{/equals}}
-                                {{#equals this.Status "Bronze"}}
-                                
-                                    <span >Next Level : Silver</span>
-                                
-                                {{/equals}}
-                            
-                              {{/each}}
-                              
-                              
-                              <div class="progress" style="height:7px;" >
-                                <div class="progress-bar" role="progressbar" style="width:90%;background-color:#2ebf91;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              {{#each ../User_Card}}
-                                {{#equals this.Status "Gold"}}
-                                
-                                    <span >{{this.Total_Points}} / --</span>
-                                  
-                                {{/equals}}
-                                {{#equals this.Status "Silver"}}
-                                  
-                                    <span >{{this.Total_Points}} / 1000</span>
-                                
-                                {{/equals}}
-                                {{#equals this.Status "Bronze"}}
-                                
-                                    <span >{{this.Total_Points}} / 500</span>
-                                
-                                {{/equals}}
-                                  
-                        
-                              {{/each}}
-                              
-                            </div>
-                          </div>
-                          <button class="btn">
-                            <i class="fa-solid fa-angle-right"></i>
-                          </button>
-                          
-                          
                         </div>
-                        <br>
-                      
-                      
-                      </div>
+                        <div class="card-body body">
+                            <div class="card level-card">
+                                <br>
+                                <div class="row">
+                                    <div class="col-2">
+                                        {{#each ../User_Card}}
+                                        {{#equals this.Status "Gold"}}
+                                        <h1>
+                                            <i class="fa-solid fa-crown"
+                                                style="color:gold;text-shadow: 1px 1px 2px grey;"></i>
+                                        </h1>
+                                        {{/equals}}
+                                        {{#equals this.Status "Silver"}}
+                                        <h1>
+                                            <i class="fa-solid fa-crown"
+                                                style="color:Silver;text-shadow: 1px 1px 2px grey;"></i>
+                                        </h1>
+                                        {{/equals}}
+                                        {{#equals this.Status "Bronze"}}
+                                        <h1>
+                                            <i class="fa-solid fa-crown"
+                                                style="color:#DC7633;text-shadow: 1px 1px 2px grey;"></i>
+                                        </h1>
+                                        {{/equals}}
 
+                                        {{/each}}
+
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="tier">
+                                            <span class="rank">
+                                                {{#each User_Card}}
+
+                                                {{../this.Status}}
+
+                                                {{/each}}
+                                            </span>
+                                        </div>
+                                        <div class="progression">
+                                            {{#each ../User_Card}}
+                                            {{#equals this.Status "Gold"}}
+
+                                            <span>Next Level : Coming Soon</span>
+
+                                            {{/equals}}
+                                            {{#equals this.Status "Silver"}}
+
+                                            <span>Next Level : Gold</span>
+
+                                            {{/equals}}
+                                            {{#equals this.Status "Bronze"}}
+
+                                            <span>Next Level : Silver</span>
+
+                                            {{/equals}}
+
+                                            {{/each}}
+
+
+                                            <div class="progress" style="height:7px;">
+                                                <div class="progress-bar" role="progressbar"
+                                                    style="width:90%;background-color:#2ebf91;" aria-valuenow="25"
+                                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            {{#each ../User_Card}}
+                                            {{#equals this.Status "Gold"}}
+
+                                            <span>{{this.Total_Points}} / --</span>
+
+                                            {{/equals}}
+                                            {{#equals this.Status "Silver"}}
+
+                                            <span>{{this.Total_Points}} / 1000</span>
+
+                                            {{/equals}}
+                                            {{#equals this.Status "Bronze"}}
+
+                                            <span>{{this.Total_Points}} / 500</span>
+
+                                            {{/equals}}
+
+
+                                            {{/each}}
+
+                                        </div>
+                                    </div>
+                                    <button class="btn">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </button>
+
+
+                                </div>
+                                <br>
+
+
+                            </div>
+
+                        </div>
                     </div>
-                  </div>
-                
-                    
-                      
+
+
+
                 </div>
             </div>
             {{/equals}}
             {{#equals this.Activation "Off"}}
             <div class="col-md-9">
-              <h3 style="margin:auto ;margin-left:100px;margin-top:100px;"> Please check your email to activate your Rewards Program!</h3>
+                <h3 style="margin:auto ;margin-left:100px;margin-top:100px;"> Please check your email to activate your
+                    Rewards Program!</h3>
             </div>
             {{/equals}}
-          {{/each}}
-        {{else}}
-        <div class="col-md-9" style="text-align:center;">
-           <h3 style="margin:auto ;margin-top:100px;"> Sign up for the Rewards Program for amazing Rewards!</h3>
-           <br>
-           <button class="btn btn-primary" style="margin:auto;">
-            <a href="/loyaltyprogram/signup" style="color:white;">
-            Sign up Now !
-            </a>
-           </button>
+            {{/each}}
+            {{else}}
+            <div class="col-md-9" style="text-align:center;">
+                <h3 style="margin:auto ;margin-top:100px;"> Sign up for the Rewards Program for amazing Rewards!</h3>
+                <br>
+                <button class="btn btn-primary" style="margin:auto;">
+                    <a href="/loyaltyprogram/signup" style="color:white;">
+                        Sign up Now !
+                    </a>
+                </button>
+            </div>
+            {{/if }}
         </div>
-        {{/if }}
-    </div>
 </section>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
-  font-family: 'Poppins', sans-serif;
-}
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
 
-  .loyalty-card{
+    .loyalty-card {
+
+        height: 100%;
+        width: 90%;
+        margin: auto;
+        border: none;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+
+    .loyalty-card .header {
+        height: 20%;
+        border-radius: 8px;
+        background: #8360c3;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2ebf91, #8360c3);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    }
+
+
+    .loyalty-card .header h4 {
+        font-weight: 600;
+    }
+
+    .loyalty-card .header span {
+        font-weight: 500;
+    }
+
+    .loyalty-card .header .point-card {
+        height: 100%;
+        margin-top: 15px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px grey;
+    }
+
+    .loyalty-card .header .point-card .text {
+        position: relative;
+        top: 20px;
+        left: 30px;
+
+    }
+
+    .loyalty-card .header .point-card .text .points-text {
+        float: right;
+        margin-right: 60px;
+        font-weight: 800;
+        font-size: 1.5rem;
+
+    }
+
+    .loyalty-card .header .point-card .text span {
+        font-weight: 600;
+        font-size: 1.2rem;
+
+    }
+
+    .loyalty-card .body .level-card {
+        height: 100%;
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        box-shadow: 1px 1px 5px grey;
+    }
+
+    .loyalty-card .body .level-card h1 {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        padding-top: 10px;
+        padding-left: 10px;
+
+    }
+
+    .loyalty-card .body .level-card .tier {
+        position: relative;
+    }
+
+    .loyalty-card .body .level-card .tier .rank {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .loyalty-card .body .level-card .progression span {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .loyalty-card .body .level-card .btn {
+        position: absolute;
+        top: 35px;
+        right: 40px;
+        transition: 0.5s ease;
+    }
+
+    .loyalty-card .body .level-card .btn:hover {
+        right: 30px;
+        transition: 0.5s ease;
+    }
+
+
+
+
+
+    /* Hover card */
+    .container-1 .card {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        background: #232323;
+        border-radius: 20px;
+        overflow: hidden;
+        border: none;
+    }
+
+    .container-1 .card:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: steelblue;
+        clip-path: circle(75px at 80% 20%);
+        transition: 0.5s ease-in-out;
+    }
+
+    .container-1 .card:hover:before {
+        clip-path: circle(200px at 80% -20%);
+    }
+
+    .container-1 .card.earn:after {
+        content: 'K E Y';
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        font-size: 10em;
+        font-weight: 800;
+        font-style: italic;
+        color: rgba(25, 247, 255, 0.082)
+    }
+
+    .container-1 .card.redeem:after {
+        content: 'H U B';
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        font-size: 10em;
+        font-weight: 800;
+        font-style: italic;
+        color: rgba(25, 247, 255, 0.082)
+    }
+
+
+    .container-1 .card .imgBx {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10000;
+        width: 100%;
+        height: 220px;
+        transition: 0.5s;
+    }
+
+    .container-1 .card:hover .imgBx {
+        top: 0%;
+        transform: translateY(-100%);
+
+    }
+
+    .container-1 .card .imgBx img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        width: 270px;
+    }
+
+    .container-1 .card .contentBx {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        transition: 1s;
+        z-index: 10;
+    }
+
+    .container-1 .card:hover .contentBx {
+        height: 130px;
+    }
+
+    .container-1 .card .contentBx h2 {
+        position: relative;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: #fff;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .container-1 .card .contentBx .redeem {
+        position: relative;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: #fff;
+        margin: 0;
+    }
+
+    .container-1 .card .contentBx .size,
+    .container .card .contentBx .color {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 20px;
+        transition: 0.5s;
+        opacity: 0;
+        visibility: visible;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+        
     
-    height: 100%;
-    width: 90%;
-    margin: auto;
-    border: none;
-    margin-top :10px;
-    border-radius: 10px;
-  }
-  .loyalty-card .header{
-    height: 20%;
-    border-radius: 8px;
-    background: #8360c3;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+    .container .card:hover .contentBx .color {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.6s;
+    }
 
-  }
- 
-  {{!-- .loyalty-card .header .fa-clock-rotate-left:hover{
-    
-    transform:rotate(-360deg);
-    transition: ease-in 0.6s;
-  }
-   --}}
+    .container-1 .card .contentBx .size h3,
+    .container .card .contentBx .color h3 {
+        color: #fff;
+        font-weight: 300;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-right: 10px;
+    }
 
-  .loyalty-card .header h4{
-    font-weight: 600;
-  }
-  .loyalty-card .header span{
-    font-weight: 500;
-  }
-  .loyalty-card .header .point-card{
-    height: 100%;
-    margin-top: 15px;
-    border:none;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px grey;
-  }
-  .loyalty-card .header .point-card .text{
-    position: relative;
-    top:20px;
-    left:30px;
-    
-  }
-  .loyalty-card .header .point-card .text .points-text{
-    float: right;
-    margin-right:60px;
-    font-weight: 800;
-    font-size: 1.5rem;
-    
-  }
-  .loyalty-card .header .point-card .text span{
-    font-weight: 600;
-    font-size: 1.2rem;
-    
-  }
-  .loyalty-card .body .level-card{
-    height: 100%;
-    margin-top: 10px;
-    width: 100%;
-    border-radius: 10px;
-    border:none;
-    box-shadow: 1px 1px 5px grey;
-  }
-  .loyalty-card .body .level-card h1{
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    padding-top:20px;
-    padding-left:10px;
-    
-  }
-  .loyalty-card .body .level-card .tier{
-    position: relative;
-  }
-  .loyalty-card .body .level-card .tier .rank{
-    font-size:1.2rem;
-    font-weight: 600;  
-  }
- 
-  .loyalty-card .body .level-card .progression span{
-    font-size: 12px;
-    margin-top: 10px;
-  }
-  .loyalty-card .body .level-card .btn{
-    position: absolute;
-    top:45px;
-    right:40px;
-    transition:0.5s ease;
-  }
-  .loyalty-card .body .level-card .btn:hover{
-    right:30px;
-    transition: 0.5s ease;
-  }
-  
-  
-  
-  
+    .container-1 .card .contentBx .size span {
+        width: 26px;
+        height: 26px;
+        text-align: center;
+        line-height: 26px;
+        font-size: 14px;
+        display: inline-block;
+        color: #111;
+        background: #fff;
+        margin: 0 5px;
+        transition: 0.5s;
+        color: #111;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-  /* Hover card */
-  .container-1 .card{
-  position: relative;
-  width: 100%;
-  height: 150px;
-  background: #232323;
-  border-radius: 20px;
-  overflow: hidden;
-  border:none;
-}
+    .container-1 .card .contentBx .size span:hover {
+        background: #9bdc28;
+    }
 
-.container-1 .card:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: steelblue;
-  clip-path: circle(75px at 80% 20%);
-  transition: 0.5s ease-in-out;
-}
+    .container-1 .card .contentBx .color span {
+        width: 20px;
+        height: 20px;
+        background: #ff0;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+    }
 
-.container-1 .card:hover:before{
-  clip-path: circle(200px at 80% -20%);
-}
+    .container-1 .card .contentBx .color span:nth-child(2) {
+        background: #9bdc28;
+    }
 
-.container-1 .card.earn:after{
-  content: 'K E Y';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  font-size: 10em;
-  font-weight: 800;
-  font-style: italic;
-  color: rgba(25, 247, 255, 0.082)
-}
-.container-1 .card.redeem:after{
-  content: 'H U B';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  font-size: 10em;
-  font-weight: 800;
-  font-style: italic;
-  color: rgba(25, 247, 255, 0.082)
-}
+    .container-1 .card .contentBx .color span:nth-child(3) {
+        background: #03a9f4;
+    }
 
+    .container-1 .card .contentBx .color span:nth-child(4) {
+        background: #e91e63;
+    }
 
-.container-1 .card .imgBx{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10000;
-  width: 100%;
-  height: 220px;
-  transition: 0.5s;
-}
+    .container-1 .card .contentBx a {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #fff;
+        border-radius: 4px;
+        margin-top: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        color: #111;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 0.5s;
+        margin-top: 0;
+    }
 
-.container-1 .card:hover .imgBx{
-  top: 0%;
-  transform: translateY(-100%);
-    
-}
+    .container-1 .card:hover .contentBx a {
+        opacity: 1;
+        transform: translateY(0px);
+        transition-delay: 0.75s;
 
-.container-1 .card .imgBx img{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-25deg);
-  width: 270px;
-}
-
-.container-1 .card .contentBx{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  text-align: center;
-  transition: 1s;
-  z-index: 10;
-}
-
-.container-1 .card:hover .contentBx{
-  height: 130px;
-}
-
-.container-1 .card .contentBx h2{
-  position: relative;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #fff;
-  margin: 0;
-  font-size: 1.8rem;
-}
-.container-1 .card .contentBx .redeem{
-  position: relative;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: #fff;
-  margin: 0;
-}
-
-.container-1 .card .contentBx .size, .container .card .contentBx .color {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 20px;
-  transition: 0.5s;opacity: 0;
-  visibility: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.container-1 .card:hover .contentBx .size{
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0.5s;
-}
-
-.container .card:hover .contentBx .color{
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0.6s;
-}
-
-.container-1 .card .contentBx .size h3, .container .card .contentBx .color h3{
-  color: #fff;
-  font-weight: 300;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-right: 10px;
-}
-
-.container-1 .card .contentBx .size span{
-  width: 26px;
-  height: 26px;
-  text-align: center;
-  line-height: 26px;
-  font-size: 14px;
-  display: inline-block;
-  color: #111;
-  background: #fff;
-  margin: 0 5px;
-  transition: 0.5s;
-  color: #111;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.container-1 .card .contentBx .size span:hover{
-  background: #9bdc28;
-}
-
-.container-1 .card .contentBx .color span{
-  width: 20px;
-  height: 20px;
-  background: #ff0;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.container-1 .card .contentBx .color span:nth-child(2){
-  background: #9bdc28;
-}
-
-.container-1 .card .contentBx .color span:nth-child(3){
-  background: #03a9f4;
-}
-
-.container-1 .card .contentBx .color span:nth-child(4){
-  background: #e91e63;
-}
-
-.container-1 .card .contentBx a{
-  display: inline-block;
-  padding: 10px 20px;
-  background: #fff;
-  border-radius: 4px;
-  margin-top: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  color: #111;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: 0.5s;
-  margin-top: 0;
-}
-
-.container-1 .card:hover .contentBx a{
-  opacity: 1;
-  transform: translateY(0px);
-  transition-delay: 0.75s;
-  
-}
-    
+    }
 </style>

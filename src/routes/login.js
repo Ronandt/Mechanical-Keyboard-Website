@@ -1,9 +1,9 @@
-const express = require("express");
-const db = require("../models/database_setup");
-const User = require("../models/User");
-const passport = require("passport");
-const { Mail, transporter } = require("../configuration/nodemailer");
-const { CustomerVoucher } = require("../models/CustomerVoucher");
+const express = require('express');
+const db = require('../models/database_setup');
+const User = require('../models/User');
+const passport = require('passport');
+const { Mail, transporter } = require('../configuration/nodemailer');
+const { CustomerVoucher } = require('../models/CustomerVoucher');
 
 const loginRouter = express.Router();
 var handlebars = require('handlebars');
@@ -44,28 +44,23 @@ loginRouter
                 password: req.body.password,
                 isStaff: false,
             });
-            const Find_User = await User.findOne({ where: { email: req.body.email } })
+            const Find_User = await User.findOne({
+                where: { email: req.body.email },
+            });
             if (req.body.promotions) {
                 await CustomerVoucher.create({
-                
-                UserID: Find_User.id,
-                setrole: 1
-                
-                })
+                    UserID: Find_User.id,
+                    setrole: 1,
+                });
             } else {
                 await CustomerVoucher.create({
-                
-                UserID: Find_User.id,
-                setrole: 0
-                
-                })
+                    UserID: Find_User.id,
+                    setrole: 0,
+                });
             }
-            
-      
-       
-            req.flash("success", "Successfully registered!");
-            return res.redirect("/login");
 
+            req.flash('success', 'Successfully registered!');
+            return res.redirect('/login');
         } catch (e) {
             req.flash('error', e);
         }

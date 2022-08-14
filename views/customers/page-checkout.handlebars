@@ -23,12 +23,12 @@
           </div>
           
         </li>
+		{{#each cart.cartProducts}}
         <li class="list-group-item d-flex justify-content-between lh-condensed">
-          {{#each cart.cartProducts}}
 				<figure class="itemside align-items-center mb-4">
 					<div class="aside">
 						{{!-- <div class="badge bg-secondary rounded-pill">{{this.CartItem.quantity}}</div> --}}
-						<img src="images/items/7.jpg" class="img-sm rounded border">
+						<img src="/{{this.image}}" class="img-sm rounded border">
 						
 					</div>
 					<figcaption class="info">
@@ -41,9 +41,8 @@
 					<br>
 					<strong class="" style="float:right;padding-left:30px;">X {{this.CartItem.quantity}}</strong>
 				</figure>
-            {{/each}}
-			
         </li>
+		{{/each}}
 		<br>
 		
 			

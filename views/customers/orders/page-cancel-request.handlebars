@@ -22,19 +22,21 @@
         <div class="col-lg-4">
           <p class="mb-0 text-muted">Contact</p>
           <p class="m-0"> 
-            Mike Johnatan <br>  Phone: 371-295-9131 <br> Email: info@mywebsite.com </p>
+            {{order.Shippinginfo.Lname}} {{order.Shippinginfo.Fname}}<br> Email: {{order.User.email}} </p>
         </div> <!-- col.// -->
         <div class="col-lg-4 border-start">
           <p class="mb-0 text-muted">Shipping address</p>
-          <p class="m-0"> United States <br> 
-            3601 Old Capitol Trail, Unit A-7, Suite 170777, Wilmington, DE 19808   </p>
+          <p class="m-0"> Singapore <br> 
+            {{order.Shippinginfo.address}} , {{order.Shippinginfo.zipcode}}
+            </p>
         </div> <!-- col.// -->
         <div class="col-lg-4 border-start">
           <p class="mb-0 text-muted">Payment</p>
           <p class="m-0">
-            <span class="text-success"> Visa  **** 4216   </span> <br> 
-            Shipping fee:  $56 <br> 
-            Total paid:  $456 
+            <span class="text-success"> Visa  **** {{order.Payment.last4digit}}</span> <br> 
+            Shipping fee:  ${{order.shipping_fee}} <br> 
+            Discount: ${{order.discount}} <br>
+            Total paid:  ${{order.amount}}
           </p>
         </div> <!-- col.// -->
       </div> <!-- row.// -->

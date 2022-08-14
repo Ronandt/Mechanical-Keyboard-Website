@@ -6,7 +6,7 @@ const superusers = require('../../data/superusers');
 const Permission = require('../models/Permissions');
 const Role = require('../models/Role');
 const CartItem = require('../models/cart');
-
+const PDF = require("../models/Pdf")
 require('dotenv').config();
 
 const ensureCreated = async () => {
@@ -28,6 +28,7 @@ const ensureCreated = async () => {
 
 const initaliseDatabase = async () => {
     await ensureCreated();
+
 
     await sequelize
         .authenticate()

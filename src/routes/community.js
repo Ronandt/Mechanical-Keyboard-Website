@@ -50,8 +50,7 @@ communityRouter.route('/chat/:room').get(async (req, res) => {
             socket.join(room);
 
             console.log('New connection...');
-            io.to(socket.id)
-            .emit(
+            io.to(socket.id).emit(
                 'message',
                 userMessage('KeyHub Bot', `Welcome to ${room} channel!`)
             );
@@ -98,10 +97,8 @@ communityRouter.route('/chat/:room').get(async (req, res) => {
             );
             numClients[room]--;
             io.emit('disconnected');
-         
         });
     });
- 
 
     res.render('./customers/page-community-chat', {
         username: req.user.username,
@@ -121,32 +118,26 @@ communityRouter.route('/chat/create-room').post(async (req, res) => {
     res.redirect('/community/chat');
 });
 
-communityRouter.route("/chat/delete-room").post(async (req,res) => {
-    const name = req.body.delete
-    await Room.destroy({where: {name} })
-    res.redirect("/community/chat")
+communityRouter.route('/chat/delete-room').post(async (req, res) => {
+    const name = req.body.delete;
+    await Room.destroy({ where: { name } });
+    res.redirect('/community/chat');
+});
 
-    
-})
-
-
-
-communityRouter.route("/chat/update-room").post(async (req, res) => {
-
-    const room = await Room.findOne({where: {name: req.body.prev_name}})
-    room.name = req.body.name
-    await room.save()
-    res.redirect("/community/chat")
-})
+communityRouter.route('/chat/update-room').post(async (req, res) => {
+    const room = await Room.findOne({ where: { name: req.body.prev_name } });
+    room.name = req.body.name;
+    await room.save();
+    res.redirect('/community/chat');
+});
 
 communityRouter.route('/chat').get(async (req, res) => {
     const all_rooms = (await Room.findAll()).map((x) => x.dataValues.name);
     console.log(await Room.count());
-    if ((await Room.count()==0 || !all_rooms.includes("Main")) ) {
-        const a =  Room.build({ name: 'Main' });
+    if ((await Room.count()) == 0 || !all_rooms.includes('Main')) {
+        const a = Room.build({ name: 'Main' });
         await a.save();
         console.log(a);
-    
     }
     console.log(all_rooms);
 

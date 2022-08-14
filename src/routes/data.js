@@ -2,7 +2,7 @@ const dataRouter = require('express').Router();
 const dfd = require('danfojs-node');
 const User = require('../models/user');
 const chartJsImg = require('chartjs-to-image');
-const Chart = require("./pipeline");
+const Chart = require('./pipeline');
 
 var getDaysArray = function (s, e) {
     for (
@@ -15,58 +15,67 @@ var getDaysArray = function (s, e) {
     return a;
 };
 
-dataRouter.get('/chart-info', async (req, res) => {
+dataRouter.get('/:data', async (req, res) => {
+    const earliest_user = (
+        await User.findAll({
+            limit: 1,
+        })
+    )[0].dataValues.date
+        .split('/')
+        .join('-');
+    if (req.params.data == 'chart-info') {
+        const df2 = await Chart.lineUserChartDaily(
+            new Date(earliest_user),
+            new Date()
+        );
 
-    const df2 = await Chart.lineUserChartDaily(new Date('07-07-2022'), new Date())
+        var NoOfUsers = [];
+        var dates = [];
+        df2.forEach((element) => {
+            NoOfUsers.push(element['NoOfUsersJoined_sum']);
+            dates.push(element['Dates']);
+        });
 
-    var NoOfUsers = [];
-    var dates = [];
-    df2.forEach((element) => {
-        NoOfUsers.push(element['NoOfUsersJoined_sum']);
-        dates.push(element['Dates']);
-    });
-    console.log(dates);
+        return res.status(200).json({ data: df2 });
+    } else if (req.params.data === 'chart-info-year') {
+        const df2 = await Chart.lineUserChartYearly(
+            new Date(earliest_user),
+            new Date()
+        );
+        var NoOfUsers = [];
+        var dates = [];
+        df2.forEach((element) => {
+            NoOfUsers.push(element['NoOfUsersJoined_sum']);
+            dates.push(element['Dates']);
+        });
 
-    console.log(NoOfUsers);
+        return res.status(200).json({ data: df2 });
+    } else if (req.params.data === 'chart-info-pie') {
+        const a = await Chart.proportionPieChart(
+            new Date(earliest_user),
+            new Date()
+        );
+        return res.status(200).json({ a });
+    } else if (req.params.data === 'chart-info-month') {
+        const df2 = await Chart.lineUserChartMonthly(
+            new Date(earliest_user),
+            new Date()
+        );
+        var NoOfUsers = [];
+        var dates = [];
+        df2.forEach((element) => {
+            NoOfUsers.push(element['NoOfUsersJoined_sum']);
+            dates.push(element['Dates']);
+        });
 
-
-
-    
-    res.status(200).json({ data: df2 });
-});
-
-dataRouter.get('/chart-info-year', async (req, res) => {
-    const df2 = await Chart.lineUserChartYearly(new Date("07-07-2022"), new Date())
-    var NoOfUsers = [];
-    var dates = [];
-    df2.forEach((element) => {
-        NoOfUsers.push(element['NoOfUsersJoined_sum']);
-        dates.push(element['Dates']);
-    });
-    console.log(dates);
-    console.log(NoOfUsers);
-    console.log(df2)
-
-
-   
-    res.status(200).json({ data: df2 });
-});
-
-dataRouter.get('/chart-info-month', async (req, res) => {
-    const df2 = await Chart.lineUserChartMonthly(new Date("07-07-2022"), new Date())
-    var NoOfUsers = [];
-    var dates = [];
-    df2.forEach((element) => {
-        NoOfUsers.push(element['NoOfUsersJoined_sum']);
-        dates.push(element['Dates']);
-    });
-    console.log(dates);
-    console.log(NoOfUsers);
-
-    console.log('hoi');
-
-
-    res.status(200).json({ data: df2 });
+        return res.status(200).json({ data: df2 });
+    } else if (req.params.data == 'chart-info-doughnut') {
+        const a = await Chart.authDoughnutChart(
+            new Date(earliest_user),
+            new Date()
+        );
+        return res.status(200).json({ a });
+    }
 });
 
 module.exports = dataRouter;

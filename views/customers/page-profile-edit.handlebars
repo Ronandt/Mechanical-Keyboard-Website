@@ -218,13 +218,12 @@
     <div class="row">
       <aside class="col-md-3">
         <ul class="list-group">
-          <a class="list-group-item active" href="#"> Account overview </a>
-          <a class="list-group-item" href="#"> My Orders </a>
-          <a class="list-group-item" href="#"> My wishlist </a>
-          <a class="list-group-item" href="#"> Return and refunds </a>
-          <a class="list-group-item" href="#">Settings </a>
-          <a class="list-group-item" href="#"> My Selling Items </a>
-          <a class="list-group-item" href="#"> Received orders </a>
+          <a class="list-group-item active" href="/account"> Account overview  </a>
+			<a class="list-group-item " href="/account/orderhistory"> My Orders </a>
+			<a class="list-group-item" href="/account/review"> My Comments </a>
+			<a class="list-group-item" href="#"> Return and refunds </a>
+            <a class="list-group-item " href="/account/myvouchers"> Vouchers</a>
+			<a class="list-group-item " href="/account/loyaltyprogram"> Rewards Program</a>
         </ul>
       </aside> <!-- col.// -->
       <main class="col-md-9">
@@ -291,7 +290,7 @@
 
 
               <div class="form-group">
-                Address: <input name="address" value="{{user.address}}" class="form-control" placeholder="Enter Email">
+                Address: <input name="address" value="{{user.address}}" class="form-control" id="address" placeholder="Enter Email">
 
               </div> <!-- form-group end.// -->
 
@@ -324,5 +323,15 @@
   </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7Semp5ggtMoLi_2f0nF4axCB5ocgcdLA&libraries=places&callback=initialize"></script>
+<script  >
+  
 
+
+
+ function initialize() {
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+</script>
 {% endblock %}

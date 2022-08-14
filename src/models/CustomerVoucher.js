@@ -17,10 +17,9 @@ CustomerVoucher.init(
             type: Sequelize.DataTypes.INTEGER,
         },
 
-        setrole:{
+        setrole: {
             type: Sequelize.DataTypes.INTEGER,
-        }
-
+        },
     },
     {
         freezeTableName: true,
@@ -46,7 +45,7 @@ VoucherItem.init(
             type: Sequelize.DataTypes.INTEGER,
         },
         Type: {
-            type:Sequelize.DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING,
         },
         usage: Sequelize.DataTypes.INTEGER,
     },

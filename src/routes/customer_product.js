@@ -3,19 +3,21 @@ const { NONE } = require('sequelize');
 const { OrderItem } = require('../models/order');
 const productRouter = express.Router();
 const product = require('../models/product');
-const Pevaluation = require("../models/product_evaluation")
-const User = require("../models/User")
+const Pevaluation = require('../models/product_evaluation');
+const User = require('../models/User');
 
-productRouter.post('/desc', async function (req, res) {
-    let { productID } = req.body;
-    const products = await (await product.findAll()).map((x) => x.dataValues);
-    const single = await Products.findOne({ where: { id: productID } });
-    return res.render('./customers/description', { single });
-});
+// productRouter.post('/desc', async function (req, res) {
+//     let { productID } = req.body;
+//     const products = await (await product.findAll()).map((x) => x.dataValues);
+//     const single = await Products.findOne({ where: { id: productID } });
+//     return res.render('./customers/description', { single });
+// });
 
 productRouter.post('/search', async function (req, res) {
     let { search } = req.body;
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
 
     for (let index = 0; index < products.length; index++) {
@@ -47,7 +49,9 @@ productRouter.post('/search', async function (req, res) {
 });
 
 productRouter.route('/general').get(async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
 
     const display = products;
     var items = await display.length;
@@ -67,7 +71,9 @@ productRouter.route('/general').get(async (req, res) => {
 });
 
 productRouter.get('/pre', async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
     for (let index = 0; index < products.length; index++) {
         if (products[index]['category'] == 'Pre-Built Keyboard') {
@@ -81,11 +87,14 @@ productRouter.get('/pre', async (req, res) => {
     } else {
         items = items.toString() + ' products';
     }
-    res.render('./customers/page-listing-grid', { display, items });
+    const keeb = { keyboard: true };
+    res.render('./customers/page-listing-grid', { display, items, keeb });
 });
 
 productRouter.get('/bare', async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
     for (let index = 0; index < products.length; index++) {
         if (products[index]['category'] == 'Barebone Kit') {
@@ -98,12 +107,14 @@ productRouter.get('/bare', async (req, res) => {
     } else {
         items = items.toString() + ' products';
     }
-    res.render('./customers/page-listing-grid', { display, items });
+    const keyboard = true;
+    res.render('./customers/page-listing-grid', { display, items, keyboard });
 });
 
-
 productRouter.get('/switches', async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
     for (let index = 0; index < products.length; index++) {
         if (products[index]['category'] == 'Switches') {
@@ -121,7 +132,9 @@ productRouter.get('/switches', async (req, res) => {
 });
 
 productRouter.get('/keycaps', async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
     for (let index = 0; index < products.length; index++) {
         if (products[index]['category'] == 'Key Cap') {
@@ -139,7 +152,9 @@ productRouter.get('/keycaps', async (req, res) => {
 });
 
 productRouter.get('/others', async (req, res) => {
-    const products = await (await product.findAll()).map((x) => x.dataValues);
+    const products = await (
+        await product.findAll({ where: { status: 'online' } })
+    ).map((x) => x.dataValues);
     const display = [];
     for (let index = 0; index < products.length; index++) {
         if (products[index]['category'] == 'Accessories') {
@@ -188,16 +203,16 @@ productRouter.get('/detail/:id', async (req, res) => {
 
         const count = review.length;
         const totalorder = await OrderItem.findAll({
-            where:{
-                ProductId: req.params.id
-            }
-        })
-        
+            where: {
+                ProductId: req.params.id,
+            },
+        });
+
         let average =
             (count5 * 5 + count4 * 4 + count3 * 3 + count2 * 2 + count1 * 1) /
             count;
-        if(count == 0 ){
-            average = 0
+        if (count == 0) {
+            average = 0;
         }
         // console.log(average)
         // console.log(onestar)
@@ -211,11 +226,13 @@ productRouter.get('/detail/:id', async (req, res) => {
             count4,
             count5,
             average,
-            totalorder
+            totalorder,
         });
     } catch (e) {
         console.log(e);
     }
+    const items = await display.length;
+    res.render('./customers/page-listing-grid', { display, items });
+});
 
-})
-module.exports = productRouter
+module.exports = productRouter;

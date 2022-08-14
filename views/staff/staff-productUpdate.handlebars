@@ -33,6 +33,10 @@
                                 </select>
                                 </div>
                                 <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Brand</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name = "brand" placeholder="Enter Description Here" required></textarea>
+                                </div>
+                                <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Stock</label>
                                 <input type="number" class="form-control" id="exampleFormControlInput1" name = "stock" placeholder="{{product.stock}}" required>
                                 </div>
@@ -50,9 +54,17 @@
                                     <option value="blue">Blue</option>
                                 </select>
                                 </div>
-                                 <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="exampleFormControlInput1" name="image" accept="image/png,image/jpeg,image/jpg,image/gif" placeholder="Choose Image File">
+                                  <div class="mb-3">
+                               <div class="upload__box">
+                                    <div class="upload__btn-box">
+                                        <label class="upload__btn">
+                                        <p>Upload image</p>
+                                        <input type="file" name="myImage" accept="image/*" class="upload__inputfile">
+                                        </label>
+                                    </div>
+                                    <div class="upload__img-wrap" style="width: 100px; height: 100px ">
+
+                                    </div> 
                                 </div>
                                 <hr>
                                 <button class="btn btn-primary btn-user btn-block" style="margin-bottom: 15px; margin-top: 40px;" name = "id"value = {{product.id}}>

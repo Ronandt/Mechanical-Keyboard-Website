@@ -5,148 +5,104 @@
 <div class="row">
 	<aside class="col-md-3">
 		<ul class="list-group">
-			<a class="list-group-item " href="#"> Account overview  </a>
-			<a class="list-group-item" href="#"> My Orders </a>
-			<a class="list-group-item" href="#"> My wishlist </a>
+			<a class="list-group-item " href="/account"> Account overview  </a>
+
+			<a class="list-group-item" href="/account/orderhistory"> My Orders </a>
+			<a class="list-group-item" href="/account/review"> My Comments </a>
 			<a class="list-group-item" href="#"> Return and refunds </a>
-			<a class="list-group-item" href="#">Settings </a>
-			<a class="list-group-item" href="#"> My Selling Items </a>
-			<a class="list-group-item" href="#"> Received orders </a>
-            <a class="list-group-item active" href="#"> My vouchers</a>
+            <a class="list-group-item active" href="/account/myvouchers"> Vouchers</a>
+			<a class="list-group-item " href="/account/loyaltyprogram"> Rewards Program</a>
+		
 		</ul>
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
-
-		<article class="card mb-3">
+		<div class="card">
 			<div class="card-body">
-				
-				<figure class="icontext">
-						<div class="icon">
-							<img class="rounded-circle img-sm border" src="images/avatars/avatar3.jpg">
+			<h4>Vouchers</h4>
+			<span> View and manage your vouchers </span>
+			</div>
+		</div>
+		<br>
+		<div class="card">
+			<div class="card-body" >
+				<form action="/CustomerVoucher/postvoucherlist" method="POST" id="redeem_code" class="">
+					<div class="">
+						<div class="row">
+							<div class="col-3">
+								<h6 class="" style="float:right;padding-top:8px;"> Code </h6>
+							</div>
+						
+								<div class="col-5" >
+									<input type="text" class="form-control" id="" name="code" placeholder="Enter code . . . " required  style="float:right;">
+								</div>
+								<div class="col-4" >
+									
+									<button class="btn btn-primary" type="submit"> Redeem </button>
+								</div>
+							
 						</div>
-						<div class="text">
-							<strong> {{user.username}}</strong> <br> 
-							{{user.email}} <br> 
-							<a href="/account/edit">Edit</a>
-						</div>
-				</figure>
-				<hr>
-				<p>
-					<i class="fa fa-map-marker text-muted"></i> &nbsp; My address:  
-					 <br>
-					None
-					<a href="#" class="btn-link"> Edit</a>
-				</p>
-
-				
-
-				<article class="card-group">
-                    {{#each voucherlist}}
+					</div>
+				</form>
+			</div>
+		</div>
+		<br>
+		<article class="card mb-3">
+			<div class="card-body review" style="overflow-y:scroll;height:450px;">
+				<div class="row">
+					{{#each voucherlist}}
                         
                         {{#if this.voucheritem}}
                             {{#equals this.UserID ../user.id}}
                                 {{#each this.voucheritem}}
-                                    <div class="courses-container">
-                                        <span class="top-left tag-2 tag-limited">Limited</span>
-                                        <div class="course">
-                                            
-                                            <div class="course-preview">
-                                                
-                                                <br>
-                                                <h6>{{this.voucher_cat}}</h6>
-                                                <h4>{{this.voucher_title}}</h4>
-                                                <br>
-                                                <a href="#">Terms & Conditions</i></a>
-                                            </div>
-                                            <div class="course-info">
-                                                <div class="progress-container">
-                                                    <div class="progress"></div>
-                                                     <span class="progress-text">
-                                                        {{#each ../../voucheritem}}
-															{{#equals this.VoucherListId ../../this/id }}
-																{{#equals this.VoucherId ../this.id}}
-																		{{!-- {{#equals this.id }} --}}
-																		{{this.usage}} / 1 Vouchers Used
-																{{/equals}}
+									<div class="col-lg-6">
+										
+										<div class="course" style="height:85%">
+													
+											<div class="course-preview">
+
+												<h6>{{this.voucher_type}}</h6>
+												<h4>{{this.voucher_title}}</h4>
+												
+												<a href="#">Terms & Conditions</i></a>
+											</div>
+											<div class="course-info">
+											
+												<div class="badge badge-secondary" style="position:absolute;right:10px;top:10px;">
+													<span class="progress-text" style="color:white;margin:5px;" >
+													{{#each ../../voucheritem}}
+														{{#equals this.VoucherListId ../../this/id }}
+															{{#equals this.VoucherId ../this.id}}
+																	{{!-- {{#equals this.id }} --}}
+																	{{this.usage}} / 1 
 															{{/equals}}
-														{{/each}}
-                                                     </span>
-                                                   
-                                                   
-                                                </div>
-                                                <h4>{{this.voucher_name}}</h4>
-                                                <h5 >Min. Spend ${{this.spend}}</h5>
-                                                <p style="color:grey;font-size: 13px;">
-                                                    Valid Till: 31.12.2022
-                                                </p>
-                                                <h4 class="btn btn-primary" style="float:right;cursor:pointer;">{{this.voucher_code}}</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                {{/each}}
-                            {{/equals}}
-                        {{else}}
-                            <h6>Customer {{../user.username}} has yet to claim any vouchers</h6>
-                        {{/if}}
-                    {{/each}}
-
-					
-					{{!-- {{#equals this.voucher_status "Active" }}
-						<span class="top-right tag-2 tag-active">{{this.voucher_status}}</span>
-					{{/equals}}
-					{{#equals this.voucher_status "Inactive" }}
-
-						<span class="top-right tag-2 tag-inactive">Fully Redeemed</span>
-					{{/equals}} --}}
-                    
-                </article>
-               
-				
-
+														{{/equals}}
+													{{/each}}
+													</span>
+												</div>
+												<h5> {{this.voucher_name}}</h5>
+												<h5 style="font-size:0.8rem" >Min. Spend ${{this.spend}}</h5>
+												
+												<p style="color:grey;font-size: 13px;">
+													Valid Till: 31.12.2022
+												</p>
+												<h5 class="copy-text" style="float:right;cursor:pointer;">
+													<button class="btn btn-primary" style="font-size:0.8rem ;">
+														{{this.voucher_code}}
+													</button>
+													<input type="hidden" value="O9FNAB0DX">
+												</h5>
+											</div>
+										</div>
+									</div>
+								{{/each}}
+							{{/equals}}
+						{{/if}}
+					{{/each}}
+				</div>
 			</div> <!-- card-body .// -->
 		</article> <!-- card.// -->
 
-		{{!-- <article class="card  mb-3">
-			<div class="card-body">
-				<h5 class="card-title mb-4">Recent orders </h5>	
-
-				<div class="row">
-				<div class="col-md-6">
-					<figure class="itemside  mb-3">
-						<div class="aside"><img src="images/items/1.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Great item name goes here </p>
-							<span class="text-warning">Pending</span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-				<div class="col-md-6">
-					<figure class="itemside  mb-3">
-						<div class="aside"><img src="images/items/2.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Machine for kitchen to blend </p>
-							<span class="text-success">Departured</span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-				<div class="col-md-6">
-					<figure class="itemside mb-3">
-						<div class="aside"><img src="images/items/3.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Ladies bag original leather </p>
-							<span class="text-success">Shipped  </span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-			</div> <!-- row.// -->
-
-			<a href="#" class="btn btn-outline-primary"> See all orders  </a>
-			</div> <!-- card-body .// -->
-		</article> <!-- card.// --> --}}
+		
 
 	</main> <!-- col.// -->
 </div>
@@ -220,7 +176,9 @@
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	display: flex;
 	max-width: 100%;
-	margin: 20px;
+	max-height: 90%;
+	margin-bottom:5px;
+	
 	overflow: hidden;
 	width: 700px;
     
@@ -259,7 +217,7 @@
 	display: inline-block;
 	font-size: 12px;
 	opacity: 0.6;
-	margin-top: 30px;
+	margin-top: 60px;
 	text-decoration: none;
 }
 
@@ -301,7 +259,75 @@
 	letter-spacing: 1px;
 }
 
+/* copy text */
+.copy-text button:active {
+	background: #809ce2;
+}
+.copy-text button:before {
+	content: "Copied";
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #5c81dc;
+	padding: 8px 10px;
+	border-radius: 5px;
+	font-size: 10px;
+	display: none;
+}
+.copy-text button:after {
+	content: "";
+	position: absolute;
+	top: -20px;
+	right: 25px;
+	width: 10px;
+	height: 10px;
+	background: #5c81dc;
+	transform: rotate(45deg);
+	display: none;
+}
+.copy-text.active button:before,
+.copy-text.active button:after {
+	display: block;
+}
+
+
+       .review::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+.review::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.review::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.review::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 </style>
+
+<script>
+let copyText = document.querySelector(".copy-text");
+copyText.querySelector("button").addEventListener("click", function () {
+	let input = copyText.querySelector("input");
+	input.select();
+	document.execCommand("copy");
+	copyText.classList.add("active");
+	console.log("Start")
+	window.getSelection().removeAllRanges();
+	setTimeout(function () {
+	copyText.classList.remove("active");
+	}, 2500);
+});
+
+</script>
 
 
 

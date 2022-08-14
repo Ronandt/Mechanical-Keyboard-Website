@@ -1,0 +1,643 @@
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Products</h1>
+<p class="mb-4">Manage Products</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="wrapper">
+              <input type="radio" name="slider" checked id="home">
+              <input type="radio" name="slider" id="blog">
+              <input type="radio" name="slider" id="code">
+              <input type="radio" name="slider" id="help">
+              <input type="radio" name="slider" id="add1">
+              <nav>
+                <label for="home" class="home"><i class="fa fa-keyboard"></i>Pre-Built Keyboards</label>
+                <label for="blog" class="blog"><i class="fa fa-keyboard"></i>Barebones Kits</label>
+                <label for="code" class="code"><i class="fa fa-stop"></i>Keycaps</label>
+                <label for="help" class="help"><img src="../../../public/images/icons/keycap.png" alt="">Switches</label>
+                <label for="add1" class="add1"><i class="fas fa-accessory"></i>Accessories</label>
+                <div class="slider"></div>
+              </nav>
+              <!-- Section of Prebuilt keyboard-->
+              <section>
+                  <div class="content content-1">
+                  <table class="table ">
+                    <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>Product Name</th>
+                          <th>Product Colour</th>
+                          <th>Product Stock</th>
+                          <th>Product Price</th>
+                          <th colspan="2"></th>  
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {{#each products}}
+                             {{#equals this.category "Pre-Built Keyboard"}}
+                          <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.colour}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.price}}</td>
+                            
+                            {{!-- <td><p class="badge badge-danger"></p></td>
+                        
+                            <td><p class="badge badge-success"></p></td> --}}
+
+                            <td>
+                              
+                                {{!-- <!-- The Modal -->
+                                <div class="modal" id="myModal_{{ this.id }}">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-dismiss="modal"></button>
+                                      </div>
+                    
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        Are you sure you want to delete {{this.id}}?
+                                      </div>
+                    
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> --}}
+                              
+                            </td>
+
+                            <td class='col-1'>
+                                  
+                              <!-- Modal -->
+                              <div class="modal fade" id="weModal_" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="">Product Details</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" >
+                                      <div class="card border-info mb-3">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body" style="color: black;">
+                                          <h5 class="card-title" style-color="black"></h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Category:  </li>
+                                          <li class="list-group-item">Price: $</li>
+                                          <li class="list-group-item float-right">Stock: </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          Created on :
+                                          <br>
+                                          Created by :
+                                          <br>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>   
+                            </td>
+                          </tr>
+                         {{/equals}}
+                         
+                        {{/each}}
+                      </tbody>
+                  </table>
+                  </div>
+              </section>
+
+              <!-- Section of Bare Bone Kit-->
+              <section>
+                  <div class="content content-2">
+                  <table class="table ">
+                    <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>Product Name</th>
+                          <th>Product Colour</th>
+                          <th>Product Stock</th>
+                          <th>Product Price</th>
+                          <th colspan="2"></th> 
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {{#each products}}
+                        {{#equals this.category "Barebone Kit"}}
+                          <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.colour}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.price}}</td>
+                            <td>
+                              {{!-- <form action=""  method="POST"> --}}
+                                
+                                <!-- Button to Open the Modal -->
+                        
+                                
+                                <!-- The Modal -->
+                                {{!-- <div class="modal" id="myModal_{{this.id}}">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-dismiss="modal"></button>
+                                      </div>
+                    
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        Are you sure you want to delete ?
+                                      </div>
+                    
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger">
+                                          <a href="/staff/manage-pe/deleteproductevaluation/{{this.id}}">Delete</a>
+                                        </button>
+
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div> --}}
+                              {{!-- </form> --}}
+                            </td>
+
+                            <td class='col-1'>
+                                  
+                           
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="weModal_" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="">Product Details</h5>
+                                      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" >
+                                      <div class="card border-info mb-3">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body" style="color: black;">
+                                          <h5 class="card-title" style-color="black"></h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Category:  </li>
+                                          <li class="list-group-item">Price: $</li>
+                                          <li class="list-group-item float-right">Stock: </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          Created on :
+                                          <br>
+                                          Created by :
+                                          <br>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>   
+                            </td>
+                          </tr>
+                          {{/equals}}
+                        {{/each}}
+                      </tbody>
+                  </table>
+                  </div>
+              </section>
+
+              <!-- Section of Key Cap-->
+              <section>
+                  <div class="content content-3">
+                  <table class="table ">
+                    <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>Product Name</th>
+                          <th>Product Category</th>
+                          <th>Product Stock</th>
+                          <th>Product Price</th>
+                          <th colspan="2"></th> 
+                      </tr>
+                      </thead>
+                      <tbody>
+                       {{#each products}}
+                        {{#equals this.category "Key Cap"}}
+                          <tr>
+                          <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.price}}</td>
+                            
+                            <td>
+              
+                              {{!-- <form action=""  method="POST"> --}}
+                                
+                                <!-- Button to Open the Modal -->
+                              
+                                
+                                {{!-- <!-- The Modal -->
+                                <div class="modal" id="myModal_{{this.id}}">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-dismiss="modal"></button>
+                                      </div>
+                    
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        Are you sure you want to delete ?
+                                      </div>
+                    
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger">
+                                          <a href="/staff/manage-pe/deleteproductevaluation/{{this.id}}">Delete</a>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div> --}}
+                              {{!-- </form> --}}
+                            </td>
+
+                            <td class='col-1'>
+                                  
+                            
+                              <!-- Modal -->
+                              <div class="modal fade" id="weModal_" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="">Product Details</h5>
+                                      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" >
+                                      <div class="card border-info mb-3">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body" style="color: black;">
+                                          <h5 class="card-title" style-color="black"></h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Category:  </li>
+                                          <li class="list-group-item">Price: $</li>
+                                          <li class="list-group-item float-right">Stock: </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          Created on :
+                                          <br>
+                                          Created by :
+                                          <br>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>   
+                            </td>
+                          </tr>
+                          {{/equals}}
+                        {{/each}}
+                      </tbody>
+                  </table>
+                  </div>
+              </section>
+            <!-- Section of Switches-->
+              <section>
+                  <div class="content content-4">
+                  <table class="table ">
+                    <thead>
+                      <tr>
+                      <th>Id</th>
+                          <th>Product Name</th>
+                          <th>Product Category</th>
+                          <th>Product Stock</th>
+                          <th>Product Price</th>
+                          <th colspan="2"></th> 
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {{#each products}}
+                        {{#equals this.category "Switches"}}
+                          <tr>
+                         <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.price}}</td>
+                            
+                            <td>
+              
+                              {{!-- <form action=""  method="POST"> --}}
+                                
+                                <!-- Button to Open the Modal -->
+                            
+                                <!-- The Modal -->
+                                {{!-- <div class="modal" id="myModal_{{this.id}}">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                      </div>
+                    
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        Are you sure you want to delete ?
+                                      </div>
+                    
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger">
+                                          <a href="/staff/manage-pe/deleteproductevaluation/{{this.id}}">Delete</a>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div> --}}
+                              {{!-- </form> --}}
+                            </td>
+
+                            <td class='col-1'>
+                                  
+                             
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="weModal_" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="">Product Details</h5>
+                                      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" >
+                                      <div class="card border-info mb-3">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body" style="color: black;">
+                                          <h5 class="card-title" style-color="black"></h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Category:  </li>
+                                          <li class="list-group-item">Price: $</li>
+                                          <li class="list-group-item float-right">Stock: </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          Created on :
+                                          <br>
+                                          Created by :
+                                          <br>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>   
+                            </td>
+                          </tr>
+                          {{/equals}}
+                        {{/each}}
+                      </tbody>
+                  </table>
+                  </div>
+              </section>
+              <!-- Section of Accessory-->
+              <section>
+                  <div class="content content-5">
+                  <table class="table ">
+                    <thead>
+                      <tr>
+                    <th>Id</th>
+                          <th>Product Name</th>
+                          <th>Product Category</th>
+                          <th>Product Stock</th>
+                          <th>Product Price</th>
+                          <th colspan="2"></th> 
+                      </tr>
+                      </thead>
+                      <tbody>
+                        {{#each products}}
+                        {{#equals this.category "Accessories"}}
+                          <tr>
+                       <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>{{this.price}}</td>
+                            
+                            <td>
+              
+                              {{!-- <form action=""  method="POST"> --}}
+                                
+                                <!-- Button to Open the Modal -->
+                               
+                                
+                                {{!-- <!-- The Modal -->
+                                <div class="modal" id="myModal_{{this.id}}">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                      </div>
+                    
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        Are you sure you want to delete ?
+                                      </div>
+                    
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger">
+                                          <a href="/staff/manage-pe/deleteproductevaluation/{{this.id}}">Delete</a>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      </div> --}}
+                              {{!-- </form> --}}
+                            </td>
+
+                            <td class='col-1'>
+                                  
+                          
+                              <!-- Modal -->
+                              <div class="modal fade" id="weModal_" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="">Product Details</h5>
+                                      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" >
+                                      <div class="card border-info mb-3">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body" style="color: black;">
+                                          <h5 class="card-title" style-color="black"></h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Category:  </li>
+                                          <li class="list-group-item">Price: $</li>
+                                          <li class="list-group-item float-right">Stock: </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          Created on :
+                                          <br>
+                                          Created by :
+                                          <br>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>   
+                            </td>
+                          </tr>
+                          {{/equals}}
+                        {{/each}}
+                      </tbody>
+                  </table>
+                  </div>
+              </section>
+          </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+<style>
+    ::selection{
+      background: rgba(23, 98, 184, 0.3);
+    }
+    .wrapper{
+  
+      width: 100%;
+      height: 100%;
+      padding: 25px 30px 30px 30px;
+      border-radius: 5px;
+      background: #fff;
+    
+    }
+    .wrapper header{
+      font-size: 30px;
+      font-weight: 600;
+      padding-bottom: 20px;
+    }
+    .wrapper nav{
+      position: relative;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .wrapper nav label{
+      display: block;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      color: #0f87d8;
+      font-size: 17px;
+      border-radius: 5px;
+      margin: 0 5px;
+  
+      transition: all 0.3s ease;
+    }
+    .wrapper nav label:hover{
+      margin-bottom: 10px;
+      background:#1253a7;
+    }
+    #home:checked ~ nav label.home,
+    #blog:checked ~ nav label.blog,
+    #code:checked ~ nav label.code,
+    #help:checked ~ nav label.help,
+    #about:checked ~ nav label.about{
+      color: #fff;
+    }
+    nav label i{
+      padding-right: 7px;
+    }
+    nav .slider{
+      position: absolute;
+      height: 100%;
+      width: 20%;
+      left: 0;
+      bottom: 0;
+      z-index: 0;
+      border-radius: 5px;
+      background: #1253a7;
+      transition: all 0.3s ease;
+    
+    }
+    input[type="radio"]{
+      display: none;
+    }
+    #blog:checked ~ nav .slider{
+      left: 20%;
+    }
+    #code:checked ~ nav .slider{
+      left: 40%;
+    }
+    #help:checked ~ nav .slider{
+      left: 60%;
+    }
+    #about:checked ~ nav .slider{
+      left: 80%;
+    }
+    #add1:checked ~ nav .slider{
+      left: 80%;
+    }
+    section .content{
+      display: none;
+      background: #fff;
+    }
+    #home:checked ~ section .content-1,
+    #blog:checked ~ section .content-2,
+    #code:checked ~ section .content-3,
+    #help:checked ~ section .content-4,
+    #add1:checked ~ section .content-5{
+      display: block;
+    }
+    section .content .title{
+      font-size: 21px;
+      font-weight: 500;
+      margin: 30px 0 10px 0;
+    }
+    section .content p{
+    text-align: justify;
+    }
+  </style>

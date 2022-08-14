@@ -41,6 +41,20 @@ manageAccountRoute
         res.redirect('/staff/accounts');
     });
 
+manageAccountRoute
+    .route('/add')
+    .get((req, res) => {
+        return res.render('./staff/staff-add-users');
+    })
+    .post(async (req, res) => {
+        await User.create({
+            username: req.body.username,
+            password: req.body.password,
+            isStaff: +req.body.isStaff,
+            email: req.body.email,
+        });
+        res.redirect('/staff/accounts');
+    });
 // Author: @lx0f
 // To get staff usernames and id when
 // querying and assigning users to a ticket

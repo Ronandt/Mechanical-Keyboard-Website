@@ -4,16 +4,23 @@ const nodemailerHbs = require('nodemailer-express-handlebars');
 const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
-
+const users = {
+    keyhub1: { user: 'keyhub1@gmail.com', pass: 'jjbsogehekusztmk' },
+    keyhuborg: { user: 'keyhuborg@gmail.com', pass: 'vitdskhmqubwqxsj' },
+};
 const transporter = nodemailer.createTransport({
     port: 465,
     host: 'smtp.gmail.com',
     auth: {
-        user: 'keyhub1@gmail.com',
-        pass: 'jjbsogehekusztmk',
+        user: users.keyhuborg.user,
+        pass: users.keyhuborg.pass,
     },
     secure: true,
 });
+
+//KeyHub Org: hBR0I06PlC%9
+//Keyhub Org: PASS (vitdskhmqubwqxsj)
+//KeyHub Org: USER(keyhuborg@gmail.com)
 
 /*transporter.use("compile", nodemailerHbs({
     viewPath: path.join(__dirname, "../../views"),
@@ -45,7 +52,7 @@ class Mail {
                     const template = handlebars.compile(html);
                     const contexts = template(context);
                     const mailOptions = {
-                        from: 'keyhub1@gmail.com',
+                        from: users.keyhuborg.user,
                         to: email_recipient,
                         subject,
                         html: contexts,

@@ -1,9 +1,5 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
-<section class="section-pagetop bg">
-<div class="container">
-	<h2 class="title-page">My Order History</h2>
-</div> <!-- container //  -->
-</section>
+
 <!-- ========================= SECTION INTRO END// ========================= -->
 
 <!-- ========================= SECTION CONTENT ========================= -->
@@ -13,27 +9,46 @@
 <div class="row">
 	<aside class="col-md-3">
 		<ul class="list-group">
-			<a class="list-group-item" href="/account"> Account overview  </a>
-			<a class="list-group-item" href="/account/orderhistroy"> My Orders </a>
+
+		<a class="list-group-item " href="/account"> Account overview  </a>
+			<a class="list-group-item " href="/account/orderhistory"> My Orders </a>
+			<a class="list-group-item active" href="/account/review"> My Comments </a>
 			<a class="list-group-item" href="#"> Return and refunds </a>
-            <a class="list-group-item active" href=""> My Comments </a>
+            <a class="list-group-item " href="/account/myvouchers"> Vouchers</a>
+			<a class="list-group-item " href="/account/loyaltyprogram"> Rewards Program</a>
 		</ul>
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
-        <h5 class="card-title"> Your Reviews </h5> 
+        
         <!-- =================== COMPONENT REVIEW ====================== -->
         <div class="row" style="margin:auto;">
-            <aside class="col-lg-9">
-                <div class="card mb-4" style="height:605px ;">
+            <aside class="col-lg-12">
+               <div class="card">
                     <div class="card-body">
-                        <div class="scroll" style="overflow-y:auto;height:450px;">
+                    <h4>Reviews </h4>
+                    <span> View and manage reviews </span>
+                    </div>
+                </div>
+                <br>
+               
+                <div class="card mb-4 review" style="height:605px ;">
+                    
+                    <div class="card-body">
+                        <div class="search-bar" style="">
+                            <i class="fa fa-magnifying-glass" style=" position: absolute;right:-210px;top:30px;width:30%;float:right; "></i>
+                            <input type="text" class="form-control" name=""  id="searchbar" onkeyup="search_animal()"  placeholder="Search Something" style="width:30%;float:right;"> 
+                            
+                        </div>
+                        
+                         <br> 
+                        <div class="scroll review" style="overflow-y:scroll;margin-top:30px;height:500px;">
                             {{#each reviews}}
-                            <blockquote class="border-bottom">
+                            <blockquote class="review-list">
                                 <div class="icontext">
                                     {{!-- <img src="/uploads/myImage-1660035606378.jpg" class="img-xs icon rounded-circle"> --}}
                                     <img src="/{{this.User.imageFilePath}}" class="img-xs icon rounded-circle">
                                     <div class="text">
-                                        <h6 class="mb-0"> {{this.User.username}} </h6>
+                                        <h6 class="mb-0"> {{this.Product.name}} </h6>
                                         <div class="rating-wrap">
                                             <ul class="rating-stars">
                                                 <li style="width:{{convert this.ProductRating}}%" class="stars-active">
@@ -47,11 +62,18 @@
                                     </div>
                                 </div> <!-- icontext.// -->
                                 <div class="mt-3">
-                                    <p>
-                                        {{this.ProductRemarks}}
-                                    </p>
+                                    <div class="card" style="border:none;">
+                                        <div class="card-body">
+                                            <p>
+                                                {{this.ProductRemarks}}
+                                            </p> 
+                                        </div>
+                                        
+                                    </div>
                                 </div>
+                                <br>
                             </blockquote>
+                            <hr>
                             <br>
                             {{/each}}
                         </div>
@@ -79,3 +101,43 @@
 	</div><!-- //container -->
 </footer>
 <!-- ========================= FOOTER END // ========================= -->
+
+<style>
+       .review::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+.review::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.review::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.review::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>
+
+<script>
+
+    function search_animal() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('review-list');
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+</script>

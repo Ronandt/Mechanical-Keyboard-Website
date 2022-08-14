@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html style="background: #fff; font-family: 'Avenir Next', Avenir, Roboto, 'Century Gothic', 'Franklin Gothic Medium', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: normal">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>KEY HUB</title>
+</head>
+
+<body style="background: #fff; margin: 0; max-width: 100%; padding: 0; width: 100%" bgcolor="#fff">
+  <style type="text/css">
+    body {
+      background: #fff; margin: 0; max-width: 100%; padding: 0; width: 100%;
+      }
+      img {
+      border: 0; outline: none; text-decoration: none;
+      }
+  </style>
+  <table style="background: #fff; margin-left: auto; margin-right: auto; max-width: 768px; padding: 0 20px; width: 100%" bgcolor="#fff">
+    <tr>
+      <td>
+        <table style="background: #fff; border: 1px solid #ccc; border-collapse: separate; border-radius: 3px; margin-left: auto; margin-right: auto; max-width: 768px; padding: 60px 40px; width: 100%" bgcolor="#fff">
+          <tr class="tc" style="text-align: center" align="center">
+            <td class="f36 lh-title" style="font-size: 36px; line-height: 1.2">Order Details</td>
+          </tr>
+          <tr class="tc" style="text-align: center" align="center">
+            <td class="f18" style="font-size: 18px">
+              <p style="margin-bottom: 35px">We received your order and we’ll let you know when we ship it out.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="f18" style="border-collapse: collapse; border-top-color: #e5e5e5; border-top-style: solid; border-top-width: 1px; font-size: 18px; padding: 35px 0 0">
+              <p style="font-weight: 500; margin: 0">Your Order (# {{order.dataValues.id}}):</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 100%">
+              <table class="f18" style="background: #fff; border-collapse: collapse; border-top-color: #e5e5e5; border-top-style: solid; border-top-width: 1px; font-size: 18px; margin: 20px 0 30px; max-width: 768px; padding: 20px 0; width: 100%" bgcolor="#fff">
+                {{#each order.OrderItems}}
+                <tr style="border-bottom-color: #e5e5e5; border-bottom-style: solid; border-bottom-width: 1px; border-collapse: separate">
+                  <td class="tl" style="padding: 20px 0; width: 30%">{{this.dataValues.quantity}}<span style="color: #999999; padding: 0 10px">x</span>
+                    {{this.Product.dataValues.name}}
+                  </td>
+                  <td style="padding: 20px 0 20px 10px; width: 70%">{{this.Product.dataValues.category}}<span style="float: right">$ {{this.Product.dataValues.price}}.00</span>
+                  </td>
+                </tr>
+                {{/each}}
+              </table>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <table style="background: #fff; margin-left: auto; margin-right: auto; max-width: 768px; padding-bottom: 30px; width: 100%" bgcolor="#fff">
+                <tr>
+                  <td class="f18" style="font-size: 18px; vertical-align: top; width: 50%" valign="top">
+                    <p class="bold" style="font-weight: 600; margin: 0 0 10px">Shipping Address</p>
+                    <div class="lh-copy" style="line-height: 1.4">Singapore
+                      <br>{{order.Shippinginfo.dataValues.address}}
+                      </div>
+                    <p class="bold" style="font-weight: 600; margin-bottom: 10px">Payment</p>Visa - XXXX {{payment.dataValues.last4digit}}</td>
+                  <td class="f18" style="font-size: 18px; vertical-align: top; width: 50%" valign="top">
+                    <p class="bold" style="font-weight: 600; margin: 0 0 10px">Details</p>
+                    <div class="lh-copy" style="line-height: 1.4">Subtotal<span style="float: right">${{order.dataValues.subtotal}}.00</span>
+
+                    </div>
+                    <div class="lh-copy" style="line-height: 1.4">Standard Shipping<span style="float: right">${{order.dataValues.shipping_fee}}</span>
+
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="tc" style="text-align: center" align="center">
+            <td class="f18 lh-copy" style="border-collapse: collapse; border-top-color: #e5e5e5; border-top-style: solid; border-top-width: 1px; font-size: 18px; line-height: 1.4; padding: 30px 0 0">
+              <span style="color: #999999; padding: 0 0 10px">Order Total</span>
+              <br> <span class="f36 bold" style="font-size: 36px; font-weight: 600">${{order.dataValues.amount}}</span>
+
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 30px"></td>
+          </tr>
+        </table>
+        <table class="tc" style="background: #fff; margin: 30px auto; max-width: 768px; text-align: center; width: 100%" bgcolor="#fff">
+          <tr>
+            <td class="f14" style="font-size: 14px">© 2022 <span style="font-weight: 600">KEYHUB</span> KEYBOARD Inc., All rights reserved.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <img height="1" src="http://bluebottlecoffee.com/email_opens/1385647?auth=cb72c503253a8f339352b0cc22df5ae4" width="1" style="border: 0; outline: none; text-decoration: none">
+  <img src="http://lnk.bluebottlecoffee.com/wf/open?upn=eLFMrKDT8iBxZ-2Fbnk-2BZqvSCGqnlXoiOVynEEWZ2l3MEn-2Bgt-2Fh14TRj7twDJKSnHTHLPsVWOVjCmt1HIts1TtfRc32WEF-2Bxq8EnYqjos3dybXpGndYAyUIhVlrAAXoHwg-2BgEPE9wzsGee-2BvVN-2B7Wsi69ZNnJQGACMXcXrgO8u2cR9j9rgmGVE-2B4R2hvVMnjpCqpPVRCK2kkJAVK64xwyeZGwGgE1wzjv7F-2FKllHj7kaY-3D"
+    alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"
+  />
+</body>
+
+</html>

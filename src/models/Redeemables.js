@@ -1,23 +1,23 @@
-const Sequelize = require("sequelize");
-const sequelize = require("./database_setup");
-const Voucher = require("./Voucher");
-const Product = require("./product")
+const Sequelize = require('sequelize');
+const sequelize = require('./database_setup');
+const Voucher = require('./Voucher');
+const Product = require('./product');
 
 class Redeemables extends Sequelize.Model {}
 
 Redeemables.init(
     {
-        id:{
+        id: {
             type: Sequelize.DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true,
+            unique: 'id',
         },
-        VoucherId:{
+        VoucherId: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: true,
         },
-        ProductId:{
+        ProductId: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: true,
         },
@@ -25,7 +25,7 @@ Redeemables.init(
             type: Sequelize.DataTypes.INTEGER,
             allowNull: false,
         },
-         Redeemcount: {
+        Redeemcount: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: false,
         },
@@ -34,26 +34,24 @@ Redeemables.init(
         freezeTableName: true,
         timestamps: true,
         sequelize,
-        modelName: "Redeemables",
+        modelName: 'Redeemables',
     }
 );
 
-
-
-Redeemables.hasOne(Voucher)
+Redeemables.hasOne(Voucher);
 
 Voucher.belongsTo(Redeemables);
 
 // Redeemables.belongsTo(Product, {
-   
+
 //     foreignKey: 'ProductId',
 //     as:"product"
-   
+
 //   })
 
 // Product.hasOne(Redeemables, {
 //     foreignKey: 'RedeemablesId',
 //     as: 'productredeemables'
 // });
-  
+
 module.exports = Redeemables;
