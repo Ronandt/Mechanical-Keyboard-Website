@@ -86,10 +86,10 @@
 													Valid Till: 31.12.2022
 												</p>
 												<h5 class="copy-text" style="float:right;cursor:pointer;">
-													<button class="btn btn-primary" style="font-size:0.8rem ;">
+													<button class="btn btn-primary clickme" style="font-size:0.8rem ;" onclick="copy()">
 														{{this.voucher_code}}
 													</button>
-													<input type="hidden" value="O9FNAB0DX">
+													<input type="hidden" class="copyme" value="{{this.voucher_code}}">
 												</h5>
 											</div>
 										</div>
@@ -314,18 +314,25 @@
 </style>
 
 <script>
-let copyText = document.querySelector(".copy-text");
-copyText.querySelector("button").addEventListener("click", function () {
-	let input = copyText.querySelector("input");
-	input.select();
-	document.execCommand("copy");
-	copyText.classList.add("active");
-	console.log("Start")
-	window.getSelection().removeAllRanges();
-	setTimeout(function () {
-	copyText.classList.remove("active");
-	}, 2500);
-});
+let copyText =document.getElementsByClassName("copy-text");
+let copyme = document.getElementsByClassName("copyme");
+let clickme = document.getElementsByClassName("clickme")
+function copy(){
+for (i = 0; i < copyText.length; i++) {
+		navigator.clipboard.writeText(copyme[i].value);
+		copyText[i].classList.add("active");
+		console.log("Start")
+		window.getSelection().removeAllRanges();
+		setTimeout(function () {
+		copyText[i].classList.remove("active");
+		}, 2500);
+
+	
+	
+}
+}
+
+
 
 </script>
 
