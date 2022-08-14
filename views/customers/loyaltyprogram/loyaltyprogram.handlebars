@@ -14,39 +14,57 @@
             {{#if User_Card}}
             {{#each User_Card}}
             {{#equals this.Activation "On"}}
-
+                         
             <div class="col-md-9">
                 <div class="card loyalty-card card-face">
                     <div class="card-header header">
                         <span style="color:white ;">Welcome Back, </span>
-                        <h4 style="color: white;">TAY ZHE YIN
+                        <h4 style="color: white;">
+                           {{#each ../voucherlist}}
+                            
+                                {{this.User.username}}
+                            
+                            
                             <i class="fa-regular fa-bell" style="float:right;padding-left:15px;"></i>
                             <i type="button" class="fa-solid fa-clock-rotate-left " style="float:right ;"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <br>
                                 <div class="dropdown-menu" style="position:relative;width:200px;">
 
-                                    {{#each ../voucherlist}}
+                                    
                                     {{#if this.voucheritem}}
-                                    {{#equals ../this.UserID ../user.id}}
-                                    {{#each ../this.voucheritem}}
-                                    {{#each ../../../voucheritem}}
-                                    {{#equals ../this.VoucherListId ../../../this.id }}
-                                    {{#equals ../this.VoucherId ../../this.id}}
-                                    {{#equals this.Type "Reward"}}
-                                    <span>{{../this.voucher_title}}</span>
-                                    <span class="float-right">27/02/2022</span>
-                                    {{/equals}}
-                                    {{/equals}}
-                                    {{/equals}}
-                                    {{/each}}
-                                    {{/each}}
-                                    {{/equals}}
+                                     <div class="card review" style="border:none;overflow-y:scroll;height:100px;">
+                                        <div class="card-body">
+                                        {{#each this.voucheritem}}
+                                        
+                                            {{#each ../../../voucheritem}}
+                                                {{#equals this.VoucherId ../this.id}}
+                                               
+                                                   
+                                                        {{../this.voucher_name}}
+                                                    <br>
+                                                    <hr>
+                                                   
+                                                
+                                                    
+                                                {{/equals}}
+                                            {{/each}}
+                                             
+                                        {{/each}}
+                                        </div>
+                                       </div>
+                                            
+                                              
+                                                
+                                               
+                                            
+                                      
                                     {{/if}}
-                                    {{/each}}
+                                    
 
                                 </div>
                             </i>
+                            {{/each}}
                         </h4>
 
                         <div class="card point-card">
@@ -205,6 +223,7 @@
 
                 </div>
             </div>
+            
             {{/equals}}
             {{#equals this.Activation "Off"}}
             <div class="col-md-9">
@@ -541,4 +560,21 @@
         transition-delay: 0.75s;
 
     }
+ .review::-webkit-scrollbar {
+width: 10px;
+  
+}
+.review::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.review::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.review::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 </style>
