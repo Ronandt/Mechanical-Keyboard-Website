@@ -52,7 +52,7 @@
     "method-override": "^3.0.0",
     "moment": "^2.29.3",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^2.3.3",
+    "mysql2": "^3.9.7",
     "node-cron": "^3.0.1",
     "nodemailer": "^6.7.5",
     "nodemailer-express-handlebars": "^5.0.0",
